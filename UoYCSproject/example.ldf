@@ -1,0 +1,10 @@
+\usepackage{color}
+\usepackage{listings}
+\lstset{%
+  language=[LaTeX]TeX,%
+  columns=flexible,%
+  basicstyle={\sffamily}
+}
+\newcommand*{\MF}{{\scshape metafont}}
+\newcommand*{\CTAN}{\href{http://www.ctan.org/}{CTAN}}
+\newcommand*{\BibTeX}{Bib\TeX}
