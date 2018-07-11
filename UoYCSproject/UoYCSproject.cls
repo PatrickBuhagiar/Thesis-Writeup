@@ -43,7 +43,7 @@
 
 % Koma-script report style
 \PassOptionsToPackage{twoside}{typearea}
-\LoadClass[fontsize=11pt,a4paper,twoside,abstracton,numbers=noenddot,BCOR13mm]{scrreprt}
+\LoadClass[fontsize=11pt,a4paper,twoside,abstracton,numbers=noenddot,BCOR=13mm]{scrreprt}
 \RequirePackage{scrhack}
 
 \RequirePackage[T1]{fontenc} % prevents < in text mode turning into
