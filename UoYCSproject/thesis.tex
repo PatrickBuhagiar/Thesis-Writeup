@@ -81,7 +81,7 @@ An interest rate is a percentage of the amount that one pays when borrowing or g
 A financial market is a marketplace for buying and selling securities such as stocks, bonds and currencies \cite{financialmarket}. Trading occurs on what is called an exchange. In the case of stocks, this is called a stock exchange and can either be in a physical location (like NYSE) or an electronic system (like NASDAQ). Any company that is traded on an exchange is referred to as a listed company, otherwise securities that are not listed are sold Over-The-Counter (OTC). Companies that trade shares OTC are typically smaller and riskier companies that did not meet the requirements to be listed on the stock exchange \cite{stockexchange}. As of June 2017, the stock exchange with the highest market capitalisation is the New York Stock Exchange (NYSE) with \$21 trillion \cite{nyse}. 
 
 \subsection{Stock Market Index}
-Another way to measure the value of a stock market, other than the total market capitalisation, is to use what is called a stock market index. A stock market index is computed from the prices or market capitalisation of a few selected stocks, typically from the largest and most influential companies in that market. The Dow Jones Industrial Average (DJIA) is one of the oldest, most well-known stock market index in the world, which takes the stocks prices of 30 companies in the United States across different industries, such as Apple, American Express, Coca-Cola and ExxonMobil. Experts however feel that the DJIA is \textit{"no longer a great reflection of the market anymore [since] it only covers 30 stocks [and] puts too much emphasis on the price rather than a market's capitalization"} \cite{dowproblem}. For the United States, a better alternative is the S\&P 500, which is much more diverse than DJIA because it includes 500 companies and uses a market capitalisation-weighted index. The main goal of these stock market indices is to represent a broad economy. Table \ref{tab:indices} lists a few of the most common stock indexes, along with their region and the number of companies they represent. 
+Another way to measure the value of a stock market, other than the total market capitalisation, is to use what is called a stock market index. A stock market index is computed from the prices or market capitalisation of a few selected stocks, typically from the largest and most influential companies in that market. The Dow Jones Industrial Average (DJIA) is one of the oldest, most well-known stock market index in the world, which takes the stocks prices of 30 companies in the United States across different industries, such as Apple, American Express, Coca-Cola and ExxonMobil. Experts however feel that the DJIA is \textit{"no longer a great reflection of the market anymore [since] it only covers 30 stocks [and] puts too much emphasis on the price rather than a market's capitalisation"} \cite{dowproblem}. For the United States, a better alternative is the S\&P 500, which is much more diverse than DJIA because it includes 500 companies and uses a market capitalisation-weighted index. The main goal of these stock market indices is to represent a broad economy. Table \ref{tab:indices} lists a few of the most common stock indexes, along with their region and the number of companies they represent. 
 
 \begin{table}[h]
     \centering
@@ -104,7 +104,7 @@ Another way to measure the value of a stock market, other than the total market 
 
 \subsection{Market Hypotheses}
 \subsubsection{Efficient Market Hypothesis}
-The Efficient Market Hyptothesis (EMH) was introduced by Fama in 1970  \cite{malkiel1970efficient} and is frequently cited in the field of finance and economics as it is a ubiquitous theory in modern finance. It states that a market is said to be efficient if the stock price of a company at any given time truly reflects the value of that company. This means that there is no point in studying past stock prices in search for patterns to predict future prices. While many academics refer to a large body of evidence in support of EMH, an equal amount of evidence also contradicts EMH. Jensen's \cite{jensen1978some} paper finds that as better data is becoming available, such as daily stock prices, the more inconsistencies are beginning to be found with EMH. It concludes that there are flaws with EMH and over time we will better understand these flaws and thus a better understanding of the markets. Another paper by Malkiel \cite{malkiel2003efficient} points out that while evidence has proved EMH to be useful in the past, certain conditions have deemed EMH inefficient for the current modern economy. Nonetheless, economists have not yet reached a consensus about whether financial markets are indeed efficient \cite{lo2004adaptive}.  
+The Efficient Market Hypothesis (EMH) was introduced by Fama in 1970  \cite{malkiel1970efficient} and is frequently cited in the field of finance and economics as it is a ubiquitous theory in modern finance. It states that a market is said to be efficient if the stock price of a company at any given time truly reflects the value of that company. This means that there is no point in studying past stock prices in search for patterns to predict future prices. While many academics refer to a large body of evidence in support of EMH, an equal amount of evidence also contradicts EMH. Jensen's \cite{jensen1978some} paper finds that as better data is becoming available, such as daily stock prices, the more inconsistencies are beginning to be found with EMH. It concludes that there are flaws with EMH and over time we will better understand these flaws and thus a better understanding of the markets. Another paper by Malkiel \cite{malkiel2003efficient} points out that while evidence has proved EMH to be useful in the past, certain conditions have deemed EMH inefficient for the current modern economy. Nonetheless, economists have not yet reached a consensus about whether financial markets are indeed efficient \cite{lo2004adaptive}.  
 
 \subsubsection{Adaptive Market Hypothesis}
 AMH is an improved version of EMH by Andrew Lo \cite{lo2004adaptive}. He explains that emerging study has challenged EMH, arguing that markets are actually driven by fear and greed rather than being rational. AMH seeks to add behavioural alternatives to EMH by applying the principles of evolution to financial interactions where the market is seen as an evolving entity \cite{lo2004adaptive}. These evolutionary principles are competition, adaptation and natural selection. Lo further expands on AMH in another paper \cite{lo2005reconciling}
@@ -160,7 +160,58 @@ Statistical tests can be utilised to examine the stationary assumptions by decom
 
 The ADF test was introduced in 1979 by David Dickey and Wayne Filler \cite{dickey1979distribution}. This test is used to determine whether a unit root, a stochastic feature that can cause problems in statistical inference, is present in an autoregressive model. 
 
-The KPSS method proposes a test of the null hyphotesis that a series is stationary around a deterministic trend \cite{kwiatkowski1992testing}. While the ADF test's null hypothesis is the presence of a unit root, the null hypothesis for KPSS is the opposite. 
+The KPSS method proposes a test of the null hypothesis that a series is stationary around a deterministic trend \cite{kwiatkowski1992testing}. While the ADF test's null hypothesis is the presence of a unit root, the null hypothesis for KPSS is the opposite. 
+
+\section{Machine Learning}
+Machine learning is a field of science concerned with building models capable of making predictions used to classify data, improve in performance and expand their knowledge through experience, without any human intervention \cite{mitchell1997}. 
+In general, machine learning can be decomposed into the following disciplines:
+
+\begin{enumerate}
+    \item \textbf{Supervised Learning:} These algorithms are trained using labelled training example inputs by generalising and constructing a learning model based on patterns found within the data. This generalised model can then be used to make predictions on unforeseen data. Predictions can either be classification (discrete output) or regression (continuous outputs). 
+    
+    \item \textbf{Unsupervised Learning:} Unlike supervised learning, there is no training set in unsupervised learning. Instead, the algorithm must make sense of unlabelled data on its own, such as automatic clustering.
+    
+    \item \textbf{Semi-supervised Learning:} This is similar to supervised learning, however the algorithm uses both labelled and unlabelled data for training. This is useful when it is too expensive to construct a fully labelled training set. 
+    
+    \item \textbf{Reinforcement learning:} These algorithms learn through trial and error which actions yield the greatest rewards. It is typically used for robotics, self driving cars and gaming.  
+\end{enumerate}
+
+\subsection{Artificial Neural Networks}
+An artificial neural network (ANN) attempts to model the information processing capabilities of nervous systems \cite{rojas2013neural}. It can be seen as a web of neurons and synapses (links between neurons), capable of performing computations on a given input by learning and identifying patterns. The fundamental unit of an ANN is the Perceptron, also known as an artificial neuron, which is an abstraction of a biological neuron. One can identify the similarities between an artificial neuron and a biological neuron in figures \ref{fig:artificialneuron} and \ref{fig:biologicalneuron}.  
+
+\begin{figure}[h]
+\includegraphics[width=10cm]{perceptron.png}
+\centering
+\caption{An artificial neuron (Perceptron).} 
+\label{fig:artificialneuron}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=10cm]{perceptron_neuron.png}
+\centering
+\caption{A biological neuron \cite{neuron}.} 
+\label{fig:biologicalneuron}
+\end{figure}
+
+The artificial neuron has four main components: inputs $x$, weights $w$, the activation function $f(x)$ and the output. The inputs are our features or attributes, also known as feature vector, which is simply represented as an n-dimensional vector consisting of binary or numerical values. These inputs are the equivalent of the input signals being received by the dendrites in figure \ref{fig:biologicalneuron}. These inputs are then multiplied by weights and fed into an activation function. The output is the result of this activation function. In its simplest form, the output of an activation function is binary, which in the biological neuron translates to whether the neuron is firing an electrical signal or not. There are many types of activation functions, however the popular ones are the sigmoid function, $tanh$ function, and the softmax function. If an activation function does not output a discrete value, then a threshold is set, for example:  \[ f(x) =
+  \begin{cases}
+    1       & \quad \text{if } x \geq 0\\
+    0       & \quad \text{if } x < 0
+  \end{cases}
+\]
+Training a model involves determining the right weight values that causes the artificial neuron to output the correct result. This is done using gradient descent on the training set. 
+
+\begin{figure}[h]
+\includegraphics[width=10cm]{feedforward.png}
+\centering
+\caption{A feed forward network.} 
+\label{fig:feedforward}
+\end{figure}
+
+\subsection{Feed Forward Neural Network}
+A Feed forward neural network is an architecture that consists of layers of neurons, where the output of one neuron can be fed into another neuron, without any loops \cite{jain1996artificial}. Therefore, all information that is fed into the input layer flows through the hidden layers until it reaches the output layers, such that the outputs of each layer only effects the next layer, without any feedback \cite{jhaartificial}. An example of a feed forward network can be seen in figure \ref{fig:feedforward}, which contains an input layer, one hidden layer, and an output layer. If a feed forward network has more than one hidden layer, then it is called a deep architecture. 
+
+Some of the architectural decisions that one must take with feed forward networks is to decide on how many hidden layers and nodes should be included in the network. Cybenko \cite{cybenko1989approximation} introduced the first version of the universal approximation theorem which states that a feed-forward network with one hidden layer and a finite number of neurons can learn most problems when given the appropriate parameters. Hornik \cite{hornik1991approximation} further expands on this theorem and shows that it is not the choice of activation function, but rather the choice of feed forward architecture that brings out the full potential of being universal approximators. Given this theorem, one might wonder why one would need deep learning. While this theorem holds for \textit{representing} a wide array of problems, it does not deal with the algorithmic \textit{learnability} of parameters. It was always possible to build deep networks with feed forward networks. They were just not particularly good at training them before Hinton et al. \cite{hinton2006fast} showed how a many-layered feed forward neural network can be effectively trained one layer at a time. 
 
 \printbibliography
 
