@@ -38,10 +38,10 @@
 \thispagestyle{empty}\cleardoublepage
 
 \chapter{Introduction}
-\label{cha:literaturereview}
+\label{cha:Introduction}
 
 \chapter{Literature Review}
-\label{cha:background}
+\label{cha:literaturereview}
 
 \section{Macro and Micro Economics}
 \label{macroandmicro}
@@ -311,7 +311,7 @@ This work requires historical closing prices from some of the top global financi
 
 \section{Objectives}
 \label{sec:objectives}
-This work seeks to measure the impact of external factors, particular other stock market closing prices and macroeconomical data, when predicting the direction of the FTSE stock market index. It does not seek to introduce a new trading tool that maximises profit, or the best architecture to use for financial forecasting, but rather investigate how particular data sets can improve prediction performance. Thus, this work seeks to confirm the following null hypotheses:
+This work seeks to measure the impact of external factors, particularly the closing prices of other stock markets and macroeconomical data, when predicting the direction of the FTSE stock market index. It does not seek to introduce a new trading tool that maximises profit, or a state-of-the-art architecture for financial forecasting, but rather investigate how particular data sets can improve predictive performance. Overall, this work seeks to confirm the following null hypotheses:
 
 \begin{enumerate}
     \item \label{h1} \textbf{The use of macroeconomic parameters improves the performance for predicting the direction of a stock market index.}
@@ -320,14 +320,15 @@ This work seeks to measure the impact of external factors, particular other stoc
 \end{enumerate}
 
 \section{Requirements}
+\label{sec:requirements}
 The requirements for this work are:
 
 \begin{enumerate}
-    \item \label{basecase} \textbf{Formulate a base case for predicting the direction of the FTSE index:} This base case will be a simple model that only uses historical prices of the FTSE index, and not use closing prices from other stock indices or macroeconomical parameters. It will be used to by other cases to measure the improvement of predictive performance.   
+    \item \label{basecase} \textbf{Formulate a base case for predicting the direction of the FTSE index:} This base case will be a simple model that only uses historical prices of the FTSE index, and not use closing prices from other stock indices or macroeconomical parameters. The performance of other methodologies will be compared with this base case to determine whether an improvement in predictive performance has been made.  
     \item \textbf{Formulate a model that incorporates historical FTSE closing prices with macroeconomical parameters for predicting the direction of the FTSE index:} This model will be used to confirm whether hyptothesis \ref{h1} holds.
-    \item \textbf{Formulate a model that incorporates historical FTSE closing prices with other stock market indices closing prices for predicting the direction of the FTSE index:} This model will be used to confirm whether hypothesis \ref{h2} holds.
-    \item \textbf{Formulate a model that incorporates historical FTSE closing prices with both macroeconomical parameters and closing prices from other stock market indices for predicting the direction of the FTSE index:} This modelw ill be used to confirm whether hyptothesis \ref{h3} holds.
-    \item \label{framework} \textbf{Develop a framework that can be used to train, predict and evaluate the performance of the above models:} More information on the evaluation criteria will be covered in the next section. 
+    \item \textbf{Formulate a model that incorporates historical FTSE closing prices with closing prices from other stock market indices for predicting the direction of the FTSE index:} This model will be used to confirm whether hypothesis \ref{h2} holds.
+    \item \textbf{Formulate a model that incorporates historical FTSE closing prices with both macroeconomical parameters and closing prices from other stock market indices for predicting the direction of the FTSE index:} This model will be used to confirm whether hypothesis \ref{h3} holds.
+    \item \label{framework} \textbf{Develop a framework that can be used to train, predict and evaluate the performance of the above models:} More information on the performance measures and evaluation criteria will be covered in the next section. 
 \end{enumerate}
 
 \section{Performance Measures and Evaluation Criteria}
@@ -337,11 +338,11 @@ Examples of statistical measures are the root mean square error (RMSE), the mean
 
 Non-statistical performance measure are less common, and in financial forecasting are typically related with the economical side of the forecast. An example is the hit rate, which measures the percentage of correct predictions of the model. Other non-statistical measures deal with the profitability of the model, such as annual rate of return and average annual profit.
 
-This work aims to predict the direction of the FTSE stock market index, making it a binary classification problem. As mentioned in the previous section, it is pertinent to understand that the aim of this work is to determine whether combining particular sets of data will improve the predictive performance of our algorithm, and not to find the best methodology for maximising profits. Nonetheless, prediction accuracy does not equate to more profit. When predicting direction of stock markets, you could achieve a high accuracy, however one incorrect prediction could be a drop large enough to wipe out any profits made in previous prediction. Thus, these findings are not intended to be used directly in complete trading strategies, despite perhaps being a stepping stone to improving trading strategies in the future. 
+This work involves predicting the direction of the FTSE stock market index, thus making it a binary classification problem. As mentioned in the previous section, it is pertinent to understand that the aim of this work is to determine whether combining particular sets of data will improve the predictive performance of our algorithm, and not to find the best methodology for maximising profits. Nonetheless, prediction accuracy does not directly equate to more profit. When predicting direction of stock markets, you could achieve a high accuracy, however one incorrect prediction could be a drop large enough to wipe out any profits made in previous prediction. Thus, these findings are not intended to be used directly in complete trading strategies, despite perhaps being a stepping stone to improving trading strategies in the future. 
 
-Since we have a binary classification problem, is does not make sense to use statistical performance measure such as RMSE, MAE and $R^2$ as they require continuous values. They would have been suitable to use if this algorithm was trying to predict a value such as the closing price, or the percentage increase. The two measures that will be performed in this work will be \textbf{accuracy} and \textbf{F1 score.} 
+Since we have a binary classification problem, is does not make sense to use statistical performance measure such as RMSE, MAE and $R^2$ as they require continuous values. They would have been suitable to use if this work involved predicting a continuous value such as the closing price, or the percentage increase. The two measures that will be performed in this work will be \textbf{accuracy} and \textbf{F1 score.} 
 
-Both the accuracy and F1 score are calculated by measuring the following items:
+Both the accuracy and F1 score require the following items to be counted:
 
 \begin{enumerate}
     \item \textbf{True Positives (TP)}: This is when a result correctly predicts that the index will rise (the positive condition).
@@ -369,7 +370,7 @@ Recall is also referred to as true positive rate, probability of detection and s
 
 Another important statistical metric is \textbf{precision}, which measures the ability of a model to identify only the relevant data points. If we relied of just recall, then labelling all our results as positive would result in a perfect recall score of 1. Such a model would however suffer from low precision. Precision is calculated as:
 
-$$precision=\frac{TP}{TP + FN}$$
+$$precision=\frac{TP}{TP + FP}$$
 Precision is also referred to as the positive predictive value. 
 
 Depending on the problem at hand, statisticians would prefer to maximise either recall or precision at the expense of the other. As an example, in cancer screening models, one would rather maximise recall, therefore identifying patients with cancer, while accepting lower precision. However in certain cases, such as stock market prediction, a good balance of precision and recall would be appreciated, because predicting incorrectly whether a stock will increase or decrease will both have the same severe consequences: profit loss.
@@ -378,11 +379,33 @@ The ideal metric for this particular problem, stock market prediction, is the F1
 $$ F_1=2 \times \frac{precision \times recall}{precision + recall} $$
 
 \section{Discussion}
+\label{sec:discussion}
 This chapter began by comparing and contrasting past financial forecasting techniques, primarily on what data has been modelled, how it was preprocessed, and what architectures were used. It was also shown that stock market index prediction is sometimes combined with other external data, such as economical data, to help improve prediction performance. Other works also took into consideration the closing prices of other stock market indices. However, to our knowledge, there seems to be a gap in literature where both macroeconomic data and the closing prices of other markets are used to predict a stock market index. 
 
-An ensemble approach, consisting of a two staged approach will be presented in the next chapter. As previously mentioned, ensemble methods have been shown to improve prediction performance over individual classifiers in the ensemble \cite{opitz1999popular}. Both stages of the ensemble will use a feed forward artificial neural network. The motivation for using feed forward networks was because they are a popular choice of architecture, since they been shown to work well for most financial forecasting applications.
+Both an ensemble approach consisting of a two staged approach and feed forward networks will be introduced in the next chapter that will conform to the requirements in Section \ref{sec:requirements}. As previously mentioned, ensemble methods have been shown to improve prediction performance over individual classifiers in the ensemble \cite{opitz1999popular}. Both stages of the ensemble will use a feed forward artificial neural network. the ensemble approach will only be used for adding macroeconomic data, while simple feed forward networks will be used for the rest of the models. The main reason for using an ensemble approach when incorporating macroeconomic data was due to difference in statistical properties between the stock market data and macroeconomic data. Stock market data consists of data that fluctuates daily, while macroeconomic data is either quarterly, monthly or daily and in some cases, such as interest or inflation rate, remains constant from time to time. The macroeconomic data in the ensemble method will be used as a tool for model selection of different stock market predictors. More details about the ensemble method will be explained in the following chapter.  
 
-This work will predict the FTSE stock market index. A slightly different approach from other works will be taken when factoring in the closing price of other stock market indexes. The approach presented in this work will follow the sun and take into consideration the closing prices of Asian stock market indices that have closed in the same day that we are trying to predict. Taking a look at the opening and closing times of stock markets in table \ref{tab:markets}, both the Hong Kong and Tokyo stock exchange close before the London stock exchange has opened. For other stock market indices and the FTSE index itself, it will consider the closing prices starting from the previous day.       
+The motivation for using feed forward networks was due to their popularity as a choice of architecture for several financial forecasting applications. Nonetheless, the main aim of this work is not to determine the best architecture for financial forecasting, but to investigate whether different sets of data can help improve performance. From the literature review performed in this work, feed forward networks seemed to be a safe and easy choice. They do not necessarily require a complex architecture to achieve good performance, they can work well even with small amounts of data (therefore efficient), and they are well established architectures for financial forecasting.    
 
+This work involves predicting the direction of the FTSE stock market index. A slightly different approach from other works will be taken when factoring in the closing price of other stock market indexes. The approach presented in this work will follow the sun and take into consideration the closing prices of Asian stock market indices that have closed on the same day that we are trying to predict. Taking a look at the opening and closing times of stock markets in table \ref{tab:markets}, both the Hong Kong and Tokyo stock exchange close before the London stock exchange has opened. For other stock market indices and the FTSE index itself, it shall consider the closing prices starting from the previous day.       
+
+\chapter{Design and Implementation}
+\section{Tools}
+As discussed in Section \ref{sec:discussion}, the most suitable approach to confirm the hypotheses mentioned in Section \ref{sec:objectives} was to utilise machine learning techniques, particularly feed forward networks and ensemble learning. Naturally, a decision had to made on the programming language and library to be used. With regards to programming languages, Java, R, Matlab and Python were taken into consideration. As for machine learning tools, Weka, TensorFlow, Theano, DL4J (Deep learning for Java) and other packages and functionality found within Matlab and R were taken into consideration. Ultimately, it was decided to use TensorFlow with Python, primarily due to having a certain level of familiarity with Python as a language, and the popularity of TensorFlow in the industry and research community. 
+
+TensorFlow is an open source software library for high performance numerical computation, but is widely used for machine learning applications, such as neural networks. It was developed by the Google Brain team, thus it is heavily used by Google itself in its own applications. Despite only having been released in 2015, it has already established itself as one of the most popular libraries in the industry. The excellent documentation, the ease of deploying across different platforms such as CPUs, GPUs and TPUs, the endless use cases that TensorFlow can be applied to, the good readability and high level of abstraction are some of the reasons why TensorFlow rose to fame so quickly. Compared to other libraries, such as Theano, it requires less functionality hacking to tailor to specific problems, which means that developers can apply and try different architectures and parameters quickly and effectively. Consequently, TensorFlow has developed a vibrant community around it, which means that it will continue to be maintained and improved for years to come. These reasons ultimately made TensorFlow the library of choice for this work.         
+
+TensorFlow was specifically built to run with Python, but also offers APIs for Java, C and Go. These however are not as extensive as the Python APIs. Despite having experience in all these languages, Python was made the programming language of choice. Python is a dynamically typed language that supports several programming paradigms such as object-oriented, imperative and functional paradigms. It also serves as a great scripting language, making it suitable for quick and easy experimentation. It is free and open source, unlike Matlab, and is available on several operating systems. The version of Python used in this work was version 3.6.5, while version 1.8.0 was used for TensorFlow.
+
+\section{Data}
+\section{Finding the optimal Parameters}
+\section{The Base Case}
+\section{Hypothesis 1: Incorporating Other Stock Market Indices}
+\section{Hypothesis 2: Incorporating Macroeconomical Parameters}
+\section{Hypothesis 3: Incorporating Macroeconomical Parameters and Other Stock Market Indices}
+
+
+\chapter{Results and Evaluation}
+
+\chapter{Conclusions}
 \printbibliography
 \end{document}
