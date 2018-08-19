@@ -171,7 +171,7 @@ by delving into a neuroscience perspective.
 The random walk hypothesis is another financial theory that is consistent with EMH. It states that stock prices are random, and thus cannot be predicted. It was introduced in Burton Malkiel's book "\textit{A Random Walk Down Wall Street}" \cite{malkiel1973random}. Similar to EMH, it also suggests that there is no point in exploiting patterns in historical data to gain profits.  
 
 \subsubsection{Chaos Theory}
-Chaos theory is a mathematical concept that deals with nonlinear models, therefore anything that is effectively impossible to predict or control, such as weather, brain states or, in our case, stock markets. In chaos theory, price changes can be determined through mathematical equations predicting factors such as a trader's own personal motives, volume changes, acceleration of the changes, and the momentum behind the changes \cite{chaostheory}. Chaos theory however is highly dependent on the initial conditions set, and produce very diverging outputs with the slightest change in inputs \cite{kellert1993wake}. 
+Chaos theory is a mathematical concept that deals with nonlinear models, therefore anything that is effectively impossible to predict or control, such as weather, brain states or, in this case, stock markets. In chaos theory, price changes can be determined through mathematical equations predicting factors such as a trader's own personal motives, volume changes, acceleration of the changes, and the momentum behind the changes \cite{chaostheory}. Chaos theory however is highly dependent on the initial conditions set, and produce very diverging outputs with the slightest change in inputs \cite{kellert1993wake}. 
 
 \section{Analysis Techniques}
 \subsection{Technical Analysis}
@@ -193,6 +193,7 @@ A time series is a collection of numerical data points collected at constant tim
 Two key properties about time series are that they are time dependent, and that most time series have some form of seasonality trends. Seasonality trends mean that the time series consists of variations specific to a particular time frame. Due to these properties, forecasting time series requires the data to be stationary. A time series is said to be stationary if both the mean and autocovariances do not depend on the date \cite{hamilton1994time}. 
 
 \subsubsection{Making a Series Stationary}
+\label{subsec:stationary}
 Making a time series stationary involves removing trends and seasonal changes. There are several methods for making a time series stationary, some of which can be combined together:
 \begin{enumerate}
     \item \textbf{Transformation:} Trend can be reduced by transforming the data. this can be anything from calculating the log, square-root, cube root etc.  
@@ -239,7 +240,7 @@ An artificial neural network (ANN) attempts to model the information processing 
 \label{fig:biologicalneuron}
 \end{figure}
 
-The artificial neuron has four main components: inputs $x$, weights $w$, the activation function $f(x)$ and the output. The inputs are our features or attributes, also known as feature vector, which is simply represented as an n-dimensional vector consisting of binary or numerical values. These inputs are the equivalent of the input signals being received by the dendrites in Figure \ref{fig:biologicalneuron}. These inputs are then multiplied by weights and fed into an activation function. The output is the result of this activation function. In its simplest form, the output of an activation function is binary, which in the biological neuron translates to whether the neuron is firing an electrical signal or not. There are many types of activation functions, however the popular ones are the sigmoid function, $tanh$ function, and the softmax function. If an activation function does not output a discrete value, then a threshold is set, for example:  \[ f(x) =
+The artificial neuron has four main components: inputs $x$, weights $w$, the activation function $f(x)$ and the output. The inputs are the features or attributes, also known as feature vector, which is simply represented as an n-dimensional vector consisting of binary or numerical values. These inputs are the equivalent of the input signals being received by the dendrites in Figure \ref{fig:biologicalneuron}. These inputs are then multiplied by weights and fed into an activation function. The output is the result of this activation function. In its simplest form, the output of an activation function is binary, which in the biological neuron translates to whether the neuron is firing an electrical signal or not. There are many types of activation functions, however the popular ones are the sigmoid function, $tanh$ function, and the softmax function. If an activation function does not output a discrete value, then a threshold is set, for example:  \[ f(x) =
   \begin{cases}
     1       & \quad \text{if } x \geq 0\\
     0       & \quad \text{if } x < 0
@@ -301,6 +302,7 @@ Almost all the articles mentioned in \cite{atsalakis2009surveying} found input d
 Neural network architectures such as feed forward and recurrent networks are the most popular forecasting architecture, amounting to 60\% of the articles surveyed in  \cite{atsalakis2009surveying}. \cite{ajith2003hybrid, andreou2000testing, pantazopoulos1998financial,phua2001neural, refenes1997neural, thawornwong2004adaptive} used feed forward neural networks while \cite{barnes2000study, leigh2002analysis, witkowska1995neural} used back propagation neural networks. Architectures typically span between one or two hidden layers, while the maximum number of input nodes used is 52. \cite{atsalakis2009surveying} comments that despite neural networks are suitable for market forecasting, difficulties tend to arise when defining the anatomy of the model, and so far the best way to determine the optimal architecture is through trial and error. 
 
 \section{Data} 
+\label{sec:data}
 This work requires both macro-economic data and stock market index data. The following subsections describe the data that has been collected. The following chapter will then explain how this data was transformed and manipulated.
 
 \subsection{Macroeconomic Data}
@@ -338,7 +340,7 @@ Examples of statistical measures are the root mean square error (RMSE), the mean
 
 Non-statistical performance measure are less common, and in financial forecasting are typically related with the economical side of the forecast. An example is the hit rate, which measures the percentage of correct predictions of the model. Other non-statistical measures deal with the profitability of the model, such as annual rate of return and average annual profit.
 
-This work involves predicting the direction of the FTSE stock market index, thus making it a binary classification problem. As mentioned in the previous section, it is pertinent to understand that the aim of this work is to determine whether combining particular sets of data will improve the predictive performance of our algorithm, and not to find the best methodology for maximising profits. Nonetheless, prediction accuracy does not directly equate to more profit. When predicting direction of stock markets, you could achieve a high accuracy, however one incorrect prediction could be a drop large enough to wipe out any profits made in previous prediction. Thus, these findings are not intended to be used directly in complete trading strategies, despite perhaps being a stepping stone to improving trading strategies in the future. 
+This work involves predicting the direction of the FTSE stock market index, thus making it a binary classification problem. As mentioned in the previous section, it is pertinent to understand that the aim of this work is to determine whether combining particular sets of data will improve the predictive performance of an algorithm, and not to find the a state-of-the-art approach for maximising profits. Nonetheless, prediction accuracy does not directly equate to more profit. When predicting direction of stock markets, you could achieve a high accuracy, however one incorrect prediction could be a drop large enough to wipe out any profits made in previous prediction. Thus, these findings are not intended to be used directly in complete trading strategies, despite perhaps being a stepping stone to improving trading strategies in the future. 
 
 Since we have a binary classification problem, is does not make sense to use statistical performance measure such as RMSE, MAE and $R^2$ as they require continuous values. They would have been suitable to use if this work involved predicting a continuous value such as the closing price, or the percentage increase. The two measures that will be performed in this work will be \textbf{accuracy} and \textbf{F1 score.} 
 
@@ -361,22 +363,37 @@ Figure \ref{fig:tptnfpfn} helps visualise what these terms mean.
 \end{figure}
 
 The accuracy can be calculated as follows: 
-$$ accuracy=\frac{TP + TN}{TP + TN + FP + FN} $$
+\begin{equation}
+\label{eq:accuracy}
+accuracy=\frac{TP + TN}{TP + TN + FP + FN}
+\end{equation}
 This is simply the summation of correctly predicted values divided by the total number of data items.
 
-Having accuracy as our sole performance metric is not good enough. As an example, imagine a model that identifies whether people at an airport are terrorists or not. This model can reach over 99\% accuracy simply by labelling all passengers as not a terrorist, because typically there are only a handful of terrorists compared to the millions of passengers that travel in airports every year. The real performance metric in this case would be measuring how well it identifies terrorists, therefore true positives. The metric we are after is known as \textbf{recall} in statistics. Recall is the measure of the model's ability to find all relative cases (true positives) within a dataset. It can be measured by the following formula:
-$$ recall=\frac{TP}{TP + FN} $$
+Having accuracy as the sole performance metric is not good enough. As an example, imagine a model that identifies whether people at an airport are terrorists or not. This model can reach over 99\% accuracy simply by labelling all passengers as not a terrorist, because typically there are only a handful of terrorists compared to the millions of passengers that travel in airports every year. The real performance metric in this case would be measuring how well it identifies terrorists, therefore true positives. The metric we are after is known as \textbf{recall} in statistics. Recall is the measure of the model's ability to find all relative cases (true positives) within a dataset. It can be measured by the following formula:
+
+\begin{equation}
+recall=\frac{TP}{TP + FN}
+\end{equation}
+
 Recall is also referred to as true positive rate, probability of detection and sensitivity.  
 
-Another important statistical metric is \textbf{precision}, which measures the ability of a model to identify only the relevant data points. If we relied of just recall, then labelling all our results as positive would result in a perfect recall score of 1. Such a model would however suffer from low precision. Precision is calculated as:
+Another important statistical metric is \textbf{precision}, which measures the ability of a model to identify only the relevant data points. If we relied of just recall, then labelling all the results as positive would result in a perfect recall score of 1. Such a model would however suffer from low precision. Precision is calculated as:
 
-$$precision=\frac{TP}{TP + FP}$$
+\begin{equation}
+precision=\frac{TP}{TP + FP}
+\end{equation}
+
 Precision is also referred to as the positive predictive value. 
 
 Depending on the problem at hand, statisticians would prefer to maximise either recall or precision at the expense of the other. As an example, in cancer screening models, one would rather maximise recall, therefore identifying patients with cancer, while accepting lower precision. However in certain cases, such as stock market prediction, a good balance of precision and recall would be appreciated, because predicting incorrectly whether a stock will increase or decrease will both have the same severe consequences: profit loss.
 
 The ideal metric for this particular problem, stock market prediction, is the F1 score, which is a metric that combines both precision and recall. The F1 score can be calculated as:
-$$ F_1=2 \times \frac{precision \times recall}{precision + recall} $$
+
+\begin{equation}
+\label{eq:f1}
+F_1=2 \times \frac{precision \times recall}{precision + recall}
+\end{equation}
+
 
 \section{Discussion}
 \label{sec:discussion}
@@ -390,14 +407,34 @@ This work involves predicting the direction of the FTSE stock market index. A sl
 
 \chapter{Design and Implementation}
 \section{Tools}
-As discussed in Section \ref{sec:discussion}, the most suitable approach to confirm the hypotheses mentioned in Section \ref{sec:objectives} was to utilise machine learning techniques, particularly feed forward networks and ensemble learning. Naturally, a decision had to made on the programming language and library to be used. With regards to programming languages, Java, R, Matlab and Python were taken into consideration. As for machine learning tools, Weka, TensorFlow, Theano, DL4J (Deep learning for Java) and other packages and functionality found within Matlab and R were taken into consideration. Ultimately, it was decided to use TensorFlow with Python, primarily due to having a certain level of familiarity with Python as a language, and the popularity of TensorFlow in the industry and research community. 
+As discussed in Section \ref{sec:discussion}, the most suitable approach to confirm the hypotheses mentioned in Section \ref{sec:objectives} was to utilise machine learning techniques, particularly feed forward networks and ensemble learning. A decision had to made on what programming language and libraries to use. Java, R, Matlab and Python were considered for this work. As for machine learning libraries, Weka, TensorFlow, Theano, DL4J (Deep learning for Java) and other packages and functionality baked into Matlab and R were taken into consideration. Tghe final decision was to use TensorFlow with Python, primarily due to the popularity of TensorFlow in the industry and research community. 
 
-TensorFlow is an open source software library for high performance numerical computation, but is widely used for machine learning applications, such as neural networks. It was developed by the Google Brain team, thus it is heavily used by Google itself in its own applications. Despite only having been released in 2015, it has already established itself as one of the most popular libraries in the industry. The excellent documentation, the ease of deploying across different platforms such as CPUs, GPUs and TPUs, the endless use cases that TensorFlow can be applied to, the good readability and high level of abstraction are some of the reasons why TensorFlow rose to fame so quickly. Compared to other libraries, such as Theano, it requires less functionality hacking to tailor to specific problems, which means that developers can apply and try different architectures and parameters quickly and effectively. Consequently, TensorFlow has developed a vibrant community around it, which means that it will continue to be maintained and improved for years to come. These reasons ultimately made TensorFlow the library of choice for this work.         
+TensorFlow is an open source software library for high performance numerical computation, but is widely used for machine learning applications, such as neural networks. It was developed by the Google Brain team, hence it is heavily used by Google itself in its own applications. Despite having only been released in 2015, it has already established itself as one of the most popular libraries in the industry. The excellent documentation, the ease of deploying across different platforms such as CPUs and GPUs, the endless use cases that TensorFlow can be applied to, the good readability and high level of abstraction are some of the reasons why TensorFlow rose to fame so quickly. Compared to other libraries, such as Theano, it requires less functionality hacking for tailoring to specific problems, hence allowing developers to apply and try different architectures and parameters quickly and effectively. As a result, TensorFlow has developed a vibrant community around it, which means that it will continue to be maintained and improved for years to come. These reasons ultimately made TensorFlow the library of choice for this work.         
 
-TensorFlow was specifically built to run with Python, but also offers APIs for Java, C and Go. These however are not as extensive as the Python APIs. Despite having experience in all these languages, Python was made the programming language of choice. Python is a dynamically typed language that supports several programming paradigms such as object-oriented, imperative and functional paradigms. It also serves as a great scripting language, making it suitable for quick and easy experimentation. It is free and open source, unlike Matlab, and is available on several operating systems. The version of Python used in this work was version 3.6.5, while version 1.8.0 was used for TensorFlow.
+TensorFlow was specifically built to run with Python, but also offers APIs for Java, C and Go. However, these APIs are not as extensive as the Python API. Naturally, Python was chosen for this work. Python is a dynamically typed language that supports several programming paradigms such as object-oriented, imperative and functional paradigms. It also serves as a great scripting language, making it suitable for quick and easy experimentation. It is free and open source, unlike Matlab, and is available on several operating systems. The version of Python used in this work was version 3.6.5, while version 1.8.0 of TensorFlow was used.
 
-\section{Data}
-\section{Finding the optimal Parameters}
+\section{Data Preprocessing}
+Section \ref{sec:data} gave an overview of what data was required for this work, how it was obtained, and what the data consists of. Just like for any times series analysis and machine learning problem, data must be made stationary in order to remove trend and seasonality. An exercise was carried out to determine the optimal way to make the data stationary. Data was tested for stationarity by applying the Augmented Dickey-Fuller (ADF) test. The ADF test is a type of statistical test called a unit root test. A unit root test determines how strongly a time series is defined by a trend. The result is interpreted using the p-value from the test. A p-value below a certain threshold, typically 5\%, suggests that a series is stationary, otherwise it is described as non-stationary. 
+
+Section \ref{subsec:stationary} mentioned several ways to make data stationary. Through trial and error, the chosen approach for making this data stationary was:
+\begin{align}
+n_i = \frac{x_i}{\max(x)} \label{eq:normalised} \\ 
+y_i = \log_e\frac{n_i}{n_{i-1}} \label{eq:log} 
+\end{align}
+
+Where $x$ is the dataset, $x_i$ the value of $x$ at index $i$, $n_i$ is the normalised value at index $i$, and $y_i$ the stationary value at index $i$. 
+
+This approach is also convenient for extracting the expected outputs, hence the direction of the index for a particular day. These expected outputs are essential for both training and testing models. A value of 1 signifies that an index will rise, while a value of 0 signifies that an index will fall. In its nature, the natural logarithm of 1 results in a value of 0. In Equation \ref{eq:log}, a logarithmic of 1 can only be achieved if the index value did not change from one day to another. If the value of the index did rise, then the natural logarithmic of a value greater than 1 would be positive, otherwise negative. Therefore, whether $y_i$ is positive or negative translates to stock index either rising or falling.
+
+The last step in preparing the data was to split the data into training and testing data. The chosen approached was to take 80\% of the data for training, and 20\% for testing.
+
+\section{Finding the Optimal Parameters}
+When working with feed forward networks, achieving an optimal result requires a careful selection of a combination of network parameters, such as learning rate, number of hidden layers and number of nodes in each layer \cite{hussain2008financial}. Since the aim of this work is not to find a state-of-the-art architecture, but rather measure the impact of different data sets of data on financial forecasting, it was decided to keep the architecture simple with just one hidden layer. Other than being less complex and computation heavy, literature suggests that a feed forward network with one hidden layer can learn most problems when given appropriate parameters \cite{cybenko1989approximation}. Nonetheless, a methodology for finding the best parameters had to be formulated for each model so as to have a fair comparison for predictive performance.   
+
+Despite the models in this work having different architectures and inputs, the approach for finding the the optimal parameters followed the same pattern. Each model was run several times while iterating through different combinations of learning rates and number of hidden nodes. The range of parameters was mainly chosen through trial and error. Each run consists of both training and testing. Performance metrics \ref{eq:accuracy} and \ref{eq:f1} were recorded after each run. A common practice in neural networks is to initialise the network with random weights. Consequently, this means that such a model is not pure, therefore it will not give the same result when given the exact same parameters and inputs. To overcome this, each model was run a further 20 times for ever combination of parameters, and the average F1 score and accuracy were recorded. These performance metrics were then plotted in a 3D graph of number of nodes vs learning rate vs accuracy or f1. This graph helped visualise the impact of the chosen parameters and thus made it possible to choose the optimal combination of parameters. In the case that the peak performance was recorded on the edge of the graph, the same exercise would be repeated with different ranges of learning rates and number of hidden nodes around that peak.
+
+As one can imagine, such an exercise takes a long time to run. For example, iterating through 10 different learning rates and 10 different number of hidden nodes, while taking the average of 20 individual runs for each parameter combination would mean that the model will be executed 2000 times. Optimising the code for parallelism was helpful. Thankfully, Tensorflow automatically performs computations on a graphics card when it detects an Nvidia GPU installed, naturally giving a speed boost to computation speed. 
+
 \section{The Base Case}
 \section{Hypothesis 1: Incorporating Other Stock Market Indices}
 \section{Hypothesis 2: Incorporating Macroeconomical Parameters}
