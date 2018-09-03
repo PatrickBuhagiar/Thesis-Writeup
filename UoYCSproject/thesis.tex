@@ -395,6 +395,7 @@ F_1=2 \times \frac{precision \times recall}{precision + recall}
 \end{equation}
 
 \subsection{Wilcoxon Signed Rank Test} 
+\label{sec:wilcoxon}
 In statistics, the Wilcoxon signed-rank test is a type of non-parametric test. The term \textit{non-parametric} signifies that no assumptions are made with regards to the underlying distribution of the data, such as mean and standard deviation. Essentially, non-parametric tests can be used when the population data does not have a normal distribution. The Wilcoxon signed rank test compares two samples to assess whether their population mean ranks differ. The null hypothesis is that the medians of two samples are equal. The underlining assumption however is that the paired differences are independent from each other.
 
 For this work, the test was used to determine whether two predictive models have the same accuracy (the null hypothesis), or not. Each of the hypotheses mentioned in Section \ref{sec:objectives} was compared to the base case mentioned in Section \ref{sec:thebasecase}. If the null hypothesis is accepted, then one can conclude that no improvement in predictive accuracy was achieved. 
@@ -414,6 +415,7 @@ The decision for using feed forward networks was due to their popularity as a ch
 This work involves predicting the direction of the FTSE stock market index. A slightly different approach from other works was taken when factoring in the closing price of other stock market indices. The approach presented in this work follows the sun and takes into consideration the closing prices of Asian stock market indices which would have closed on the same day as the prediction. Taking a look at the opening and closing times of stock markets in table \ref{tab:markets}, both the Hong Kong and Tokyo stock exchange close before the London stock exchange has opened. For other stock market indices and the FTSE index itself, it shall consider the closing prices starting from the previous day.       
 
 \chapter{Design and Implementation}
+\label{cha:implementation}
 \section{Tools}
 As discussed in Section \ref{sec:discussion}, the most suitable approach to confirm the hypotheses mentioned in Section \ref{sec:objectives} was to utilise machine learning techniques, particularly feed forward networks and ensemble learning. A decision had to made on what programming language and libraries to use. Java, R, Matlab and Python were considered for this work. As for machine learning libraries, Weka, TensorFlow, Theano, DL4J (Deep learning for Java) and other packages and functionality baked into Matlab and R were taken into consideration. The final decision was to use TensorFlow with Python, primarily due to the popularity of TensorFlow in the industry and research community. 
 
@@ -439,17 +441,17 @@ The last step in preparing the data was to split the data into training and test
 
 \section{Finding the Optimal Parameters}
 \label{sec:optimalparams}
-When working with feed forward networks, achieving an optimal result requires a careful selection of a combination of network parameters, such as learning rate, number of hidden layers and number of nodes in each layer \cite{hussain2008financial}. Since the aim of this work was not to find a state-of-the-art architecture, but rather measure the impact of different data sets of data on financial forecasting, it was decided to keep things simple and adopt an architecture with just one hidden layer. In addition to being less complex and computation heavy, literature suggests that a feed forward network with one hidden layer can learn most problems when given appropriate parameters \cite{cybenko1989approximation}. Nonetheless, a methodology for finding the best learning rate and number of nodes in the hidden layer had to be formulated for each model for the benefit of having a fair comparison for predictive performance between models.   
+When working with feed forward networks, achieving an optimal result requires a careful selection of a combination of network parameters, such as learning rate, number of hidden layers and number of nodes in each layer \cite{hussain2008financial}. Since the aim of this work was not to find a state-of-the-art architecture, but rather measure the impact of different data sets of data on financial forecasting, it was decided to keep things simple and adopt an architecture with just one hidden layer. In addition to being less complex and computationally heavy, literature suggests that a feed forward network with one hidden layer can learn most problems when given appropriate parameters \cite{cybenko1989approximation}. Nonetheless, a methodology for finding the best learning rate and number of nodes in the hidden layer had to be formulated for each model for the benefit of having a fair comparison for predictive performance between models.   
 
 Despite the models in this work having different architectures and inputs, the approach for finding the the optimal parameters followed the same pattern. Each model was run several times while iterating through different combinations of learning rates and number of hidden nodes. The range of parameters to iterate through was mainly chosen through trial and error. Each run consists of both training and testing. Performance metrics \ref{eq:accuracy} and \ref{eq:f1} were recorded after each run.
 
 A common practice in neural networks is to initialise the network with random weights. Consequently, this means that such a model is not pure, hence it will not give the same result when fed the exact same parameters and inputs. To overcome this, each model was repeatedly run a further $20$ times for each combination of parameters, and the average F1 score and accuracy were recorded. These performance metrics were then plotted in a 3D graph of number of hidden nodes VS learning rate VS accuracy or F1 score. This graph helped visualise the impact of the chosen parameters and thus made it possible to choose the optimal combination of parameters. In the case that the peak performance was recorded on the edge of the graph, the same exercise would be repeated with different ranges of learning rates and number of hidden nodes around that peak.
 
-As one can imagine, such an exercise takes a long time to run. For instance, iterating through $10$ different learning rates and $10$ different number of hidden nodes, while taking the average of $20$ individual runs for each parameter combination would mean that the model will be executed $2000$ times. Optimising the code for parallelism was helpful.  
+As one can imagine, such an exercise takes a long time to run. For instance, iterating through $10$ different learning rates and $10$ different number of hidden nodes, while taking the average of $20$ individual runs for each parameter combination would mean that the model will be executed $2000$ times. Consequently, this framework for finding the optimal parameters was optimised to use multiple threads to increase computation performance.   
 
 \section{The Base Case}
 \label{sec:thebasecase}
-As per Requirement \ref{basecase}, a model for predicting the FTSE index with just the historical closing prices of FTSE was introduced.  To achieve this, a simple feed forward network with one hidden layer was implemented. A total of five inputs were used, which were mapped to the closing prices of the past five days of the FTSE index. 
+As per Requirement \ref{basecase}, a model for predicting the FTSE index with just the historical closing prices of FTSE was introduced.  To achieve this, a simple feed forward network with one hidden layer was implemented. A total of five inputs were used, which were mapped to the closing prices of the past five days of the FTSE index. The feed forward network was trained and tested on five years worth of FTSE closing prices, between the year 2013 and 2018. The same date range was used for the other hypotheses in order to perform a fair comparison in predictive performance.
 
 Figure \ref{fig:basecase} depicts the chosen architecture for the base model. 
 
@@ -464,7 +466,7 @@ All feed forward networks in this work followed similar network configurations. 
 
 \section{Hypothesis 1: Incorporating Other Stock Market Indices}
 \label{sec:methodh1}
-The architecture for this hypothesis is very similar to that used in the base case. The only different here is the number of inputs. The inputs for this architecture will consist of the closing prices from the past three days for the seven stock market indices mentioned in Table \ref{tab:indices}. Therefore, the total number of inputs for this architecture is $21$. The same exercise from the base case for finding the optimal learning rate and number of nodes was also used. 
+The architecture for this hypothesis is very similar to that used in the previous section, where a feed forward network was trained over a period of five years of data. The only different here is the number of inputs. The inputs for this architecture consisted of the closing prices from the past three days for the seven stock market indices mentioned in Table \ref{tab:indices}. Therefore, the total number of inputs for this architecture was $21$. The same exercise from the base case for finding the optimal learning rate and number of nodes was also performed. 
 
 A closer look at the historical closing index prices of different stock markets shows that not all stock markets open on the same days. This is mainly due to stock markets not operating on country specific bank holidays. To overcome this issue, whenever an index does not have a closing price for a particular date, the last known closing price would be used instead.  
 
@@ -472,9 +474,11 @@ A closer look at the historical closing index prices of different stock markets 
 \label{sec:methodh2}
 As per Requirement \ref{h2}, this hypothesis requires incorporating macroeconomical data with the historical closing prices of the FTSE. Section \ref{sec:discussion} mentioned the motivation for approaching this problem with an ensemble approach. 
 
-The first stage of the ensemble consisted of training and testing several prediction models over different periods of time. The architecture for these models were identical to that used in the base case described in Section \ref{sec:thebasecase}. Models were trained and tested over periods of five years, however the data for each model was shifted by six months. A total of $16$ models were created, and cover stock index data from 2000 to 2013. Recall that an exercise for finding the optimal parameters for the model was performed in Section \ref{sec:thebasecase}. The same optimal parameters were used for these models. Since these models produce different results even when trained with the same parameters, each model was trained and tested $20$ times and the best performing model was saved. TensorFlow has the functionality for saving and loading pre-trained models offline.
+The first stage of the ensemble consisted of training and testing several prediction models over different periods of time. The architecture for these models were similar to that used in the base case described in Section \ref{sec:thebasecase}. Models were trained and tested over periods of five years, however the period of data for each model was shifted by six months. A total of $16$ models were created, and cover stock index data from 2000 to 2013. For each model, a similar exercise to that described in Section \ref{sec:optimalparams} was performed to find the optimal parameters. Unlike in Section \ref{sec:thebasecase} and \ref{sec:methodh1}, where only the average performance was recorded for several combination of parameters, this stage only persisted the trained model that achieved the highest accuracy.  
 
-The second stage of the ensemble involved incorporating the outputs of these pre-trained models, macroeconomical data and the closing price of the FTSE stock market index as inputs through another feed forward network, which is the meta model. The meta model requires a new data set for training and testing and optimal parameters must be found using the exercise discussed in Section \ref{sec:optimalparams}. Figure \ref{fig:metamodelflow} shows a high level data flow of the two-staged ensemble model. All the outputs of the pre-trained models consist of either $1$ or $0$, signifying whether they predicted the FTSE index will rise or fall. Each macroeconomic parameter consists of four inputs, which map to the actual value in the last four quarters. Finally, another five inputs are added that map to the last five closing prices of the FTSE index. 
+The second stage of the ensemble involved incorporating the outputs of these pre-trained models, macroeconomical data and the closing price of the FTSE stock market index as inputs through another feed forward network, which hereafter will be referred to as the meta model. The meta model requires a different data set from the first stage for training and testing. In order to achieve a fair comparison in predictive performance, the meta model was also trained and tested with data between the year 2013 and 2018, as was done in Section \ref{sec:thebasecase} and \ref{sec:methodh1}. The optimal parameters were found using the same exercise discussed in Section \ref{sec:optimalparams}.  
+
+Figure \ref{fig:metamodelflow} shows a high level data flow of the two-staged ensemble model. All the outputs of the pre-trained models consist of either $1$ or $0$, signifying whether they predicted the FTSE index will rise or fall. Each macroeconomic parameter consists of three inputs, which map to the actual value in the last three quarters. Finally, another three inputs were added that map to the last three closing prices of the FTSE index. 
 
 \begin{figure}[h]
 \includegraphics[width=10cm]{Meta-model.png}
@@ -486,12 +490,43 @@ The second stage of the ensemble involved incorporating the outputs of these pre
 
 \section{Hypothesis 3: Incorporating Macroeconomical Parameters and Other Stock Market Indices}
 \label{sec:methodh3}
-The exact same ensemble architecture in Section \ref{sec:methodh2} was used for this hypothesis, with the exception that each individually trained model in the first stage followed the same architecture in Section \ref{sec:methodh1} rather than the base case in Section \ref{sec:thebasecase}.
+The exact same ensemble procedure in Section \ref{sec:methodh2} was used for this hypothesis, with the exception that each individually trained model in the first stage followed the same architecture in Section \ref{sec:methodh1} rather than the base case in Section \ref{sec:thebasecase}. 
 
 \chapter{Results and Evaluation}
+\section{The Base Case}
+All the methods mentioned in Chapter \ref{cha:implementation} were trained and tested with data from 2013 to 2018, so as to achieve a fair performance comparison over the same data set. With regards to FTSE data, this translates to $1256$ days of closing prices thus splitting the data $80/20$ will result in $1004$ daily closing prices for training, and $252$ for testing.
 
-\section{Base Case}
+\begin{figure}[h]
+\includegraphics[width=10.5cm]{base_accuracy.png}
+\centering
+\caption{A 3D plot of the accuracy results from the base case optimal parameter test.} 
+\label{fig:base_plot_accuracy}
+\end{figure}
 
+With regards to the direction of data, this period happens to be well balanced, where $53.18$\% of the FTSE closing price rises, and $46.82$\% falls. With regards to just the testing data, the FTSE rises $52$\% of the time, and thus falls in the remaining $48$\%. While Hypothesis \ref{h1}, \ref{h2} and \ref{h3} were compared with the base case defined in Section \ref{sec:thebasecase}, the base case it self was compared with an alternative baseline where a model would predict all predictions as rising. Therefore, the predictive accuracy of of the alternate baseline would be $52$\% with an F1 Score of $0.684$. Since this is a well balanced data set, accuracy score will take precedence, since F1 score is more suitable for when true positives are in a large majority.
+
+\begin{figure}[h]
+\includegraphics[width=10.5cm]{base_f1.png}
+\centering
+\caption{A 3D plot of the F1 score results from the base case optimal parameter test.} 
+\label{fig:base_plot_f1}
+\end{figure}
+
+Figure \ref{fig:base_plot_accuracy} and \ref{fig:base_plot_f1} show the results from the optimal parameter test described in Section \ref{sec:optimalparams}. The optimal parameters for the base case were $9$ hidden nodes with a learning rate of $0.0016$. These parameters achieved an average of $55$\% accuracy and $0.65$ F1 Score.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|} \hline
+        \textbf{Method} & \textbf{Accuracy} & \textbf{F1 Score} \\ \hline
+        \textbf{Base Case} & 0.55357 & 0.65241 \\
+        \textbf{Alternate Baseline} & 0.51984 & 0.68404 \\
+        \hline
+    \end{tabular}
+    \caption{Comparison of performance results between base case and alternate baseline}
+    \label{tab:basecase_results}
+\end{table}
+
+Table \ref{tab:basecase_results} shows that the Base case outperformed the baseline in terms of accuracy, but achieved less in terms of F1 Score. Performing the Wilcoxon signed rank test described in Section \ref{sec:wilcoxon} gives a p-value of 0.013, which is less than 0.05. This means that the null hypothesis can be rejected and hence statistically confirm that the base case and alternate baseline predictions are not similar. 
 
 \chapter{Conclusions}
 \printbibliography
