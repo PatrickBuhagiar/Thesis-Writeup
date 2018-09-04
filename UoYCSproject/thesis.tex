@@ -499,34 +499,95 @@ All the methods mentioned in Chapter \ref{cha:implementation} were trained and t
 \begin{figure}[h]
 \includegraphics[width=10.5cm]{base_accuracy.png}
 \centering
-\caption{A 3D plot of the accuracy results from the base case optimal parameter test.} 
+\caption{A 3D plot of the accuracy results for the base case optimal parameter test.} 
 \label{fig:base_plot_accuracy}
 \end{figure}
 
-With regards to the direction of data, this period happens to be well balanced, where $53.18$\% of the FTSE closing price rises, and $46.82$\% falls. With regards to just the testing data, the FTSE rises $52$\% of the time, and thus falls in the remaining $48$\%. While Hypothesis \ref{h1}, \ref{h2} and \ref{h3} were compared with the base case defined in Section \ref{sec:thebasecase}, the base case it self was compared with an alternative baseline where a model would predict all predictions as rising. Therefore, the predictive accuracy of of the alternate baseline would be $52$\% with an F1 Score of $0.684$. Since this is a well balanced data set, accuracy score will take precedence, since F1 score is more suitable for when true positives are in a large majority.
+With regards to the daily direction of the FTSE data, this period happens to be well balanced, where $53.18$\% of the daily FTSE closing prices rise, and $46.82$\% fall. With regards to just the testing data, the FTSE rises $51.98$\% of the time, and thus falls in the remaining $48.02$\%. While Hypotheses \ref{h1}, \ref{h2} and \ref{h3} were compared with the base case defined in Section \ref{sec:thebasecase}, the base case it self was compared with an alternative baseline where a model would predict all predictions as rising. Therefore, the predictive accuracy of the alternate baseline would be $51.98$\% with an F1 Score of $0.684$. Since this is a well balanced data set, accuracy score will take precedence, since the F1 score is weighted more toward correctly predicting that the stock index will rise.
 
 \begin{figure}[h]
 \includegraphics[width=10.5cm]{base_f1.png}
 \centering
-\caption{A 3D plot of the F1 score results from the base case optimal parameter test.} 
+\caption{A 3D plot of the F1 score results for the base case optimal parameter test.} 
 \label{fig:base_plot_f1}
 \end{figure}
 
-Figure \ref{fig:base_plot_accuracy} and \ref{fig:base_plot_f1} show the results from the optimal parameter test described in Section \ref{sec:optimalparams}. The optimal parameters for the base case were $9$ hidden nodes with a learning rate of $0.0016$. These parameters achieved an average of $55$\% accuracy and $0.65$ F1 Score.
+Figure \ref{fig:base_plot_accuracy} and \ref{fig:base_plot_f1} show the results from the optimal parameter test described in Section \ref{sec:optimalparams}. The optimal parameters for the base case were $9$ hidden nodes with a learning rate of $0.0016$. These parameters achieved an average of $55.36$\% accuracy and $0.65$ F1 Score.
+
+Table \ref{tab:test_results} shows that the Base case outperformed the baseline in terms of accuracy, but achieved less in terms of F1 Score. Performing the Wilcoxon signed rank test described in Section \ref{sec:wilcoxon} gives a p-value of 0.013, which is less than 0.05. This means that the null hypothesis can be rejected and hence statistically confirm that the base case and alternate baseline predictions are not similar. 
+
+\section{Hypothesis 1: Incorporating Other Stock Market Indices}
+Using the same data set in the previous section, Figure \ref{fig:h1_plot_accuracy} and \ref{fig:h1_plot_f1} show the results from the optimal parameter test. The best performance was achieved with 17 hidden nodes and a learning rate of 0.0003. These parameters achieved an average of $66.51$\% accuracy and an F1 score of $0.72$.
+
+\begin{figure}[h]
+\includegraphics[width=10.5cm]{h1_accuracy.png}
+\centering
+\caption{A 3D plot of the accuracy results for the hypothesis \ref{h1} optimal parameter test.} 
+\label{fig:h1_plot_accuracy}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=10.5cm]{h1_f1.png}
+\centering
+\caption{A 3D plot of the F1 score results for the hypothesis \ref{h1} optimal parameter test.} 
+\label{fig:h1_plot_f1}
+\end{figure}
+
+Comparing with results in Table \ref{tab:test_results}, there is a a clear improvement over the base case, where accuracy increased by $20.14$\%, and F1 Score by $10.44$\%. 
+
+\section{Hypothesis 2: Incorporating Macroeconomical Parameters}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|} \hline
+        \textbf{Data Period} & \textbf{Learning Rate} & \textbf{Nodes} & \textbf{F1 Score} & \textbf{Accuracy} \\ \hline
+        Jan 2000 - 2005 & 0.0013 & 16 & 0.489 & 0.516 \\
+        Jul 2000 - 2005 & 0.0005 & 14 & 0.548 & 0.532 \\
+        Jan 2001 - 2006 & 0.0011 & 18 & 0.634 & 0.552 \\
+        Jul 2001 - 2006 & 0.0011 & 10 & 0.663 & 0.562 \\
+        Jan 2002 - 2007 & 0.0009 & 12 & 0.631 & 0.510 \\
+        Jul 2002 - 2007 & 0.0005 & 07 & 0.691 & 0.562 \\
+        Jan 2003 - 2008 & 0.0005 & 08 & 0.652 & 0.558 \\
+        Jul 2003 - 2008 & 0.0009 & 09 & 0.594 & 0.556 \\
+        Jan 2004 - 2009 & 0.0011 & 18 & 0.534 & 0.488 \\
+        Jul 2004 - 2009 & 0.0011 & 10 & 0.555 & 0.516 \\
+        Jan 2005 - 2010 & 0.0007 & 09 & 0.642 & 0.579 \\
+        Jul 2005 - 2010 & 0.0011 & 07 & 0.584 & 0.536 \\
+        Jan 2006 - 2011 & 0.0013 & 18 & 0.653 & 0.583 \\
+        Jul 2006 - 2011 & 0.0011 & 20 & 0.620 & 0.552 \\
+        Jan 2007 - 2012 & 0.0005 & 12 & 0.587 & 0.508 \\
+        Jul 2007 - 2012 & 0.0011 & 20 & 0.546 & 0.532 \\
+        \hline
+    \end{tabular}
+    \caption{The chosen parameters and performance results for each model trained over its respective period in the first stage of the ensemble.}
+    \label{tab:test_stage1}
+\end{table}
+
+
+
+
+
+\section{Hypothesis 3: Incorporating Macroeconomical Parameters and Other Stock Market Indices}
+
+
+
+
+
 
 \begin{table}[h]
     \centering
     \begin{tabular}{|c|c|c|} \hline
         \textbf{Method} & \textbf{Accuracy} & \textbf{F1 Score} \\ \hline
-        \textbf{Base Case} & 0.55357 & 0.65241 \\
         \textbf{Alternate Baseline} & 0.51984 & 0.68404 \\
+        \textbf{Base Case} & 0.55357 & 0.65241 \\
+        \textbf{Hypothesis \ref{h1}} & 0.66508 & 0.72052 \\
         \hline
     \end{tabular}
     \caption{Comparison of performance results between base case and alternate baseline}
-    \label{tab:basecase_results}
+    \label{tab:test_results}
 \end{table}
 
-Table \ref{tab:basecase_results} shows that the Base case outperformed the baseline in terms of accuracy, but achieved less in terms of F1 Score. Performing the Wilcoxon signed rank test described in Section \ref{sec:wilcoxon} gives a p-value of 0.013, which is less than 0.05. This means that the null hypothesis can be rejected and hence statistically confirm that the base case and alternate baseline predictions are not similar. 
+
 
 \chapter{Conclusions}
 \printbibliography
