@@ -8,8 +8,8 @@
 \addbibresource{refs.bib}
 
 \author{Patrick Buhagiar}
-\title{The Impact of Macroeconomic Parameters on Forecasting Financial Markets}
-\date{2018-July-30}
+\title{The Impact of Macroeconomic Parameters and Market Contagion on Forecasting Financial Markets}
+\date{2018-September-11}
 \supervisor{Dimitar Kazakov}
 \MIP
 \wordcount{3884}
@@ -39,6 +39,11 @@
 
 \chapter{Introduction}
 \label{cha:Introduction}
+For millennia, people have yearned for the ability to predict the future. Thankfully, recent advancements in machine learning have brought us closer to this reality, in a limited way. Nonetheless, research keeps pushing the boundaries of machine learning everyday, from discovering new methods and architectures, to building more efficient and dedicated hardware that help expand existing capabilities. The main driver behind this push is not just academia, but also the industry.  Financial forecasting is one example where the industry is heavily investing in as it offers high benefits through many commercial applications \cite{majhi2007stock}.
+
+Financial forecasting is the ability to predict the outcome of companies, markets or economies. For companies such as investment firms, knowing what the future holds can be useful because it allows them to make smart investments, and thus maximise profits. An essential aspect to financial forecasting is choosing the most influential data \cite{zhong2017forecasting}. With regards to stock market prediction, literature has provided several methods and architectures that combine different external data sets to predict stock market indices, such as economic data, fundamental analysis, exchange rates, and even calendar based events such as earning announcements. This study will add further to this pool of research by measuring the impact of macroeconomical data and stock market data from some of the most influential markets from around the world when predicting the direction of the FTSE stock market index.   
+
+This study is organised as follows. Chapter \ref{cha:literaturereview}, Literature Review, will explain the underlying economic, financial theory and machine learning concepts, while discussing different approaches for financial forecasting. Chapter \ref{cha:problemanalysis}, Problem Analysis, compares and contrast the different approaches to stock market prediction, and clearly defines the objectives, requirements, and chosen approach for experimentation in this study. Chapter \ref{cha:implementation}, Design and Implementation, further describes in detail the design choices and methodology for achieving the objectives mentioned in Chapter \ref{cha:problemanalysis}. The results of this study are shown and discussed in Chapter \ref{cha:resultsandevaluation}, and finally Chapter \ref{cha:conclusions} closes off with some final remarks and potential future work. 
 
 \chapter{Literature Review}
 \label{cha:literaturereview}
@@ -121,7 +126,7 @@ Another way to measure the value of a stock market, other than the total market 
 \subsection{Market Contagion}
 One of the major shifts in the last few decades is globalisation, which consequently has increased openness and interpenetration of national economies and sovereign states \cite{scott1999regions}. As a result, regional markets have started to be more correlated with each other. Market contagion refers to this correlation, where market changes or disturbances spread from one regional market to another. This means that a financial crisis in one region will create a domino effect and weaken other economies. A good example of this is the \textit{Great Depression} in the 1930s, which originated in the United States, and resulted in the global GDP falling by $15$\% in the first $3$ years \cite{rogerhistoryrepeating}. A more recent example is the financial crisis of 2008, the effects of which still linger on in some countries \cite{2008crisis}.  
 
-Market contagion can easily be visualised and quantified. Figure \ref{fig:stockindexplot} contains a scaled plot of the indices in Table \ref{tab:indices} over a $5$ year period. From observing the structure of the indices, it is evident that markets are connected globally, where markets seem to fall and rise together. The scatter matrix plot in Figure \ref{fig:scatterplot} further emphasis the correlation between global markets. As this work will be predicting the direction of the FTSE index, we can see that FTSE has a strong correlation with CAC, DAX and STOXX, all of which are European markets. There is also good correlation with the S\&P 500, and less correlation with HKSE and NIKKEI. Table \ref{tab:correlations} quantifies the correlations between the FTSE stock market index and the other stock market indices mentioned in Table \ref{tab:indices}. 
+Market contagion can easily be visualised and quantified. Figure \ref{fig:stockindexplot} contains a scaled plot of the indices in Table \ref{tab:indices} over a $5$ year period. From observing the structure of the indices, it is evident that markets are connected globally, where markets seem to fall and rise together. The scatter matrix plot in Figure \ref{fig:scatterplot} further emphasis the correlation between global markets. As this study will be predicting the direction of the FTSE index, we can see that FTSE has a strong correlation with CAC, DAX and STOXX, all of which are European markets. There is also good correlation with the S\&P 500, and less correlation with HKSE and NIKKEI. Table \ref{tab:correlations} quantifies the correlations between the FTSE stock market index and the other stock market indices mentioned in Table \ref{tab:indices}. 
 
 \begin{figure}[h]
 \includegraphics[width=12cm]{scaled_plot_of_indices}
@@ -282,6 +287,7 @@ Nowadays prediction performance is being improved by hybridising several AI tech
 Another recent trend in financial time series prediction is the use of ensemble learning. Ensemble learning is the combination of predictions from individually trained classifiers to form a single predictive model. Research has shown that an ensemble is often more accurate than any of the individual classifiers in the ensemble \cite{opitz1999popular}. Apart from improving the prediction performance, ensemble techniques can be used for model selection. Bagging \cite{breiman1996bagging} is one example, where classifiers train on several sub samples of the training data and then, by majority voting, the most-voted class is predicted. Another ensemble technique is random subspace, which randomly selects some features from the given feature space. A model will be built on each subspace, and finally integrated by majority vote, similar to bagging. 
 
 \chapter{Problem Analysis}
+\label{cha:problemanalysis}
 \section{Stock Market Forecasting}
 The previous chapter mentioned several techniques for stock market prediction such as using statistical models, ANNs, SVM and ensemble methods. Despite having all these different approaches, the no free lunch theorem \cite{wolpert1997no} states that there is no singular model that works best for every problem. This means that while a particular approach might work for a particular problem, it might not hold for another. 
 
@@ -301,17 +307,17 @@ Neural network architectures such as feed forward and recurrent networks are the
 
 \section{Data} 
 \label{sec:data}
-This work requires both macroeconomic data and stock market index data. The following subsections describe the data that was collected, while Section \ref{sec:datapreprocessing} will then explain how this data was transformed and manipulated.
+This study requires both macroeconomic data and stock market index data. The following subsections describe the data that was collected, while Section \ref{sec:datapreprocessing} will then explain how this data was transformed and manipulated.
 
 \subsection{Macroeconomic Data}
-This work involves predicting the direction of the UK stock market, thus it made sense to focus on collecting macro-economic data for the UK. To simplify the model, the scope of learning had been reduced to five macroeconomic variables: inflation rate, interest rate, balance of trade,  unemployment rate and GDP. These parameters were chosen because they are commonly used in literature, both for stock market prediction and modelling of macroeconomic variables. A definition for these parameters can be found in Section \ref{macroandmicro}. This data is provided by the UK Office for National Statistics which provides yearly, quarterly and monthly data for inflation and unemployment rate, yearly and quarterly data for GDP and balance of trade, and daily data for interest rate. 
+This study involves predicting the direction of the UK stock market, thus it made sense to focus on collecting macro-economic data for the UK. To simplify the model, the scope of learning had been reduced to five macroeconomic variables: inflation rate, interest rate, balance of trade,  unemployment rate and GDP. These parameters were chosen because they are commonly used in literature, both for stock market prediction and modelling of macroeconomic variables. A definition for these parameters can be found in Section \ref{macroandmicro}. This data is provided by the UK Office for National Statistics which provides yearly, quarterly and monthly data for inflation and unemployment rate, yearly and quarterly data for GDP and balance of trade, and daily data for interest rate. 
 
 \subsection{Stock Market Index Data}
-This work uses historical closing prices from some of the top global financial stock market indices. Apart from FTSE, which is what will be predicted, data was collected for the following stock market indices: STOXX 50, S\&P 500, Nikkei 225, DAX 30, CAC 50 and Hang Seng. These indices were chosen precisely because they represent the most influential economies in the world, and are often used in literature for financial forecasting. Stock market indices from emerging markets are less likely to influence well established markets such as the UK.  More information about these stock market indices can be found in Table \ref{tab:indices}. All these stock market indices where collected from Yahoo Finance, except for FTSE, which was collected from \textit{www.investing.com}. 
+This study uses historical closing prices from some of the top global financial stock market indices. Apart from FTSE, which is what will be predicted, data was collected for the following stock market indices: STOXX 50, S\&P 500, Nikkei 225, DAX 30, CAC 50 and Hang Seng. These indices were chosen precisely because they represent the most influential economies in the world, and are often used in literature for financial forecasting. Stock market indices from emerging markets are less likely to influence well established markets such as the UK.  More information about these stock market indices can be found in Table \ref{tab:indices}. All these stock market indices where collected from Yahoo Finance, except for FTSE, which was collected from \textit{www.investing.com}. 
 
 \section{Objectives}
 \label{sec:objectives}
-This work seeks to measure the impact of external factors, particularly the closing prices of other stock markets and macroeconomical data, when predicting the direction of the FTSE stock market index. It does not seek to introduce a new trading tool that maximises profit, or a state-of-the-art architecture for financial forecasting, but rather investigate how particular data sets can improve predictive performance. Overall, this work seeks to confirm the following null hypotheses:
+This study seeks to measure the impact of external factors, particularly the closing prices of other stock markets and macroeconomical data, when predicting the direction of the FTSE stock market index. It does not seek to introduce a new trading tool that maximises profit, or a state-of-the-art architecture for financial forecasting, but rather investigate how particular data sets can improve predictive performance. Overall, this study seeks to confirm the following null hypotheses:
 
 \begin{enumerate}
     \item \label{h1} \textbf{The use of closing prices from other stock market indices improves the performance for predicting the direction of a stock market index.}
@@ -321,7 +327,7 @@ This work seeks to measure the impact of external factors, particularly the clos
 
 \section{Requirements}
 \label{sec:requirements}
-The requirements for this work are:
+The requirements for this study are:
 
 \begin{enumerate}
     \item \label{basecase} \textbf{Formulate a base case for predicting the direction of the FTSE index:} This base case is a simple model that only uses historical prices of the FTSE index, without using closing prices from other stock indices or macroeconomical parameters. The performance of other methodologies will be compared with this base case to determine whether an improvement in predictive performance has been made.  
@@ -338,9 +344,9 @@ Examples of statistical measures are the root mean square error (RMSE), the mean
 
 Non-statistical performance measure are less common, and in financial forecasting are typically related with the economical side of the forecast. An example is the hit rate, which measures the percentage of correct predictions of the model. Other non-statistical measures deal with the profitability of the model, such as annual rate of return and average annual profit.
 
-This work involves predicting the direction of the FTSE stock market index, thus making it a binary classification problem. As mentioned in the previous section, it is pertinent to understand that the aim of this work is to determine whether combining particular sets of data will improve the predictive performance of an algorithm, and not to find the state-of-the-art approach for maximising profits. Nonetheless, prediction accuracy does not directly equate to more profit. When predicting direction of stock markets, you could achieve a high accuracy, however one incorrect prediction could be a drop large enough to wipe out any profits made in previous prediction. Thus, these findings are not intended to be used directly in complete trading strategies, despite perhaps being a stepping stone to improving trading strategies in the future. 
+This study involves predicting the direction of the FTSE stock market index, thus making it a binary classification problem. As mentioned in the previous section, it is pertinent to understand that the aim of this study is to determine whether combining particular sets of data will improve the predictive performance of an algorithm, and not to find the state-of-the-art approach for maximising profits. Nonetheless, prediction accuracy does not directly equate to more profit. When predicting direction of stock markets, you could achieve a high accuracy, however one incorrect prediction could be a drop large enough to wipe out any profits made in previous prediction. Thus, these findings are not intended to be used directly in complete trading strategies, despite perhaps being a stepping stone to improving trading strategies in the future. 
 
-Since we have a binary classification problem, is does not make sense to use statistical performance measure such as RMSE, MAE and $R^2$ as they require continuous values. They would have been suitable to use if this work involved predicting a continuous value such as the closing price, or the percentage increase. The two performance measures that were performed in this work were \textbf{accuracy} and \textbf{F1 score}. 
+Since we have a binary classification problem, is does not make sense to use statistical performance measure such as RMSE, MAE and $R^2$ as they require continuous values. They would have been suitable to use if this study involved predicting a continuous value such as the closing price, or the percentage increase. The two performance measures that were performed in this study were \textbf{accuracy} and \textbf{F1 score}. 
 
 \subsection{Accuracy and F1 Score}
 
@@ -398,34 +404,34 @@ F_1=2 \times \frac{precision \times recall}{precision + recall}
 \label{sec:wilcoxon}
 In statistics, the Wilcoxon signed-rank test is a type of non-parametric test. The term \textit{non-parametric} signifies that no assumptions are made with regards to the underlying distribution of the data, such as mean and standard deviation. Essentially, non-parametric tests can be used when the population data does not have a normal distribution. The Wilcoxon signed rank test compares two samples to assess whether their population mean ranks differ. The null hypothesis is that the medians of two samples are equal. The underlining assumption however is that the paired differences are independent from each other.
 
-For this work, the test was used to determine whether two predictive models have the same accuracy (the null hypothesis), or not. Each of the hypotheses mentioned in Section \ref{sec:objectives} was compared to the base case mentioned in Section \ref{sec:thebasecase}. If the null hypothesis is accepted, then one can conclude that no improvement in predictive accuracy was achieved. 
+For this study, the test was used to determine whether two predictive models have the same accuracy (the null hypothesis), or not. Each of the hypotheses mentioned in Section \ref{sec:objectives} was compared to the base case mentioned in Section \ref{sec:thebasecase}. If the null hypothesis is accepted, then one can conclude that no improvement in predictive accuracy was achieved. 
 
 The data sample used for this test contained a value of either one or zero, where a value of one signifies that a model correctly predicted the direction of the FTSE index, while a zero signifies otherwise.
 
 \section{Discussion}
 \label{sec:discussion}
-This chapter began by comparing and contrasting past financial forecasting techniques, primarily on what data has been modelled, how it was preprocessed, and what architectures were used. It was also shown that stock market index prediction is sometimes combined with other external data, such as economical data, to help improve prediction performance. Other works also took into consideration the closing prices of other stock market indices. However, to our knowledge, there seems to be a gap in literature where both macroeconomic data and the closing prices of other markets are used to predict a stock market index. This work therefore seeks to use both sets of data in an effort to produce a better evaluation of the impact of such external actors on the direction of the FTSE stock market index.   
+This chapter began by comparing and contrasting past financial forecasting techniques, primarily on what data has been modelled, how it was preprocessed, and what architectures were used. It was also shown that stock market index prediction is sometimes combined with other external data, such as economical data, to help improve prediction performance. Other works also took into consideration the closing prices of other stock market indices. However, to our knowledge, there seems to be a gap in literature where both macroeconomic data and the closing prices of other markets are used to predict a stock market index. This study therefore seeks to use both sets of data in an effort to produce a better evaluation of the impact of such external actors on the direction of the FTSE stock market index.   
 
-The next chapter will introduce both an ensemble approach and feed forward networks which will conform to the requirements in Section \ref{sec:requirements}. As previously mentioned, ensemble methods have been shown to improve prediction performance over individual classifiers in the ensemble \cite{opitz1999popular}. Both stages of the ensemble will use a feed forward artificial neural network. The ensemble approach will only be used for adding macroeconomic data, while simple feed forward networks will be used for the rest of the models. The ensemble approach was inspired by the works in Matthew Butler's PhD thesis \cite{butler2012computational} where he introduced LATIS (Learning Adaptive Technical Indicator System), a forecasting algorithm that blends micro and macro modelling perspectives when applying computational intelligence techniques. LATIS consists of a meta agent that uses reputation, effectiveness threshold and return as meta parameters for choosing an action to perform. The same idea, with different parameters was applied to this work, where instead a meta agent uses macro economic parameters to select which predictive model to use. The models to be selected are several feed forward networks trained over different periods that follow the same architecture as the base case or hypothesis \ref{h1}. This last bit is inspired by the bagging approach in ensemble learning \cite{breiman1996bagging}, where classifiers are trained on several sub sample of the training data. These sub samples are often chosen at random, however since this work deals with a time series, the order of data is crucial. An alternative option would be to take sub samples as shifted periods of data.
+The next chapter will introduce both an ensemble approach and feed forward networks which will conform to the requirements in Section \ref{sec:requirements}. As previously mentioned, ensemble methods have been shown to improve prediction performance over individual classifiers in the ensemble \cite{opitz1999popular}. Both stages of the ensemble will use a feed forward artificial neural network. The ensemble approach will only be used for adding macroeconomic data, while simple feed forward networks will be used for the rest of the models. The ensemble approach was inspired by the works in Matthew Butler's PhD thesis \cite{butler2012computational} where he introduced LATIS (Learning Adaptive Technical Indicator System), a forecasting algorithm that blends micro and macro modelling perspectives when applying computational intelligence techniques. LATIS consists of a meta agent that uses reputation, effectiveness threshold and return as meta parameters for choosing an action to perform. The same idea, with different parameters was applied to this study, where instead a meta agent uses macro economic parameters to select which predictive model to use. The models to be selected are several feed forward networks trained over different periods that follow the same architecture as the base case or hypothesis \ref{h1}. This last bit is inspired by the bagging approach in ensemble learning \cite{breiman1996bagging}, where classifiers are trained on several sub sample of the training data. These sub samples are often chosen at random, however since this study deals with a time series, the order of data is crucial. An alternative option would be to take sub samples as shifted periods of data.
 
 Stock market data is volatile in nature and fluctuates on a daily basis. Training several models over smaller different time periods instead of a single model over one large period could be beneficial because with a smaller dataset, a model would be able to better capture fluctuation patterns in greater detail. Capturing the same level of detail with the same model over a large dataset would more likely lead to overfitting. 
 
-The decision for using feed forward networks was due to their popularity as a choice of architecture for several financial forecasting applications. Nonetheless, the main aim of this work is not to determine the best architecture for financial forecasting, but to investigate whether different sets of data can help improve performance. From the literature review performed in this work, feed forward networks seemed to be a safe and easy choice. They do not necessarily require a complex architecture to achieve good performance, they can work well even with small amounts of data (therefore efficient), and they are well established architectures for financial forecasting.    
+The decision for using feed forward networks was due to their popularity as a choice of architecture for several financial forecasting applications. Nonetheless, the main aim of this study is not to determine the best architecture for financial forecasting, but to investigate whether different sets of data can help improve performance. From the literature review performed in this study, feed forward networks seemed to be a safe and easy choice. They do not necessarily require a complex architecture to achieve good performance, they can work well even with small amounts of data (therefore efficient), and they are well established architectures for financial forecasting.    
 
-This work involves predicting the direction of the FTSE stock market index. A slightly different approach from other works was taken when factoring in the closing price of other stock market indices. The approach presented in this work follows the sun and takes into consideration the closing prices of Asian stock market indices which would have closed on the same day as the prediction. Taking a look at the opening and closing times of stock markets in table \ref{tab:markets}, both the Hong Kong and Tokyo stock exchange close before the London stock exchange has opened. For other stock market indices and the FTSE index itself, it shall consider the closing prices starting from the previous day.       
+This study involves predicting the direction of the FTSE stock market index. A slightly different approach from other works was taken when factoring in the closing price of other stock market indices. The approach presented in this study follows the sun and takes into consideration the closing prices of Asian stock market indices which would have closed on the same day as the prediction. Taking a look at the opening and closing times of stock markets in table \ref{tab:markets}, both the Hong Kong and Tokyo stock exchange close before the London stock exchange has opened. For other stock market indices and the FTSE index itself, it shall consider the closing prices starting from the previous day.       
 
 \chapter{Design and Implementation}
 \label{cha:implementation}
 \section{Tools}
-As discussed in Section \ref{sec:discussion}, the most suitable approach to confirm the hypotheses mentioned in Section \ref{sec:objectives} was to utilise machine learning techniques, particularly feed forward networks and ensemble learning. A decision had to made on what programming language and libraries to use. Java, R, Matlab and Python were considered for this work. As for machine learning libraries, Weka, TensorFlow, Theano, DL4J (Deep learning for Java) and other packages and functionality baked into Matlab and R were taken into consideration. The final decision was to use TensorFlow with Python, primarily due to the popularity of TensorFlow in the industry and research community. 
+As discussed in Section \ref{sec:discussion}, the most suitable approach to confirm the hypotheses mentioned in Section \ref{sec:objectives} was to utilise machine learning techniques, particularly feed forward networks and ensemble learning. A decision had to made on what programming language and libraries to use. Java, R, Matlab and Python were considered for this study. As for machine learning libraries, Weka, TensorFlow, Theano, DL4J (Deep learning for Java) and other packages and functionality baked into Matlab and R were taken into consideration. The final decision was to use TensorFlow with Python, primarily due to the popularity of TensorFlow in the industry and research community. 
 
-TensorFlow is an open source software library for high performance numerical computation, but is widely used for machine learning applications, such as neural networks. It was developed by the Google Brain team, hence it is heavily used by Google itself in its own applications. Despite having only been released in 2015, it has already established itself as one of the most popular libraries in the industry. The excellent documentation, the ease of deploying across different platforms such as CPUs and GPUs, the endless use cases that TensorFlow can be applied to, the good code readability and high level of abstraction are some of the reasons why TensorFlow rose to fame so quickly. Compared to other libraries, such as Theano, it requires less functionality hacking for tailoring to specific problems, hence allowing developers to apply and try different architectures and parameters quickly and effectively. As a result, TensorFlow has developed a vibrant community around it, which means that it will continue to be maintained and improved for years to come. These reasons ultimately made TensorFlow the library of choice for this work.         
+TensorFlow is an open source software library for high performance numerical computation, but is widely used for machine learning applications, such as neural networks. It was developed by the Google Brain team, hence it is heavily used by Google itself in its own applications. Despite having only been released in 2015, it has already established itself as one of the most popular libraries in the industry. The excellent documentation, the ease of deploying across different platforms such as CPUs and GPUs, the endless use cases that TensorFlow can be applied to, the good code readability and high level of abstraction are some of the reasons why TensorFlow rose to fame so quickly. Compared to other libraries, such as Theano, it requires less functionality hacking for tailoring to specific problems, hence allowing developers to apply and try different architectures and parameters quickly and effectively. As a result, TensorFlow has developed a vibrant community around it, which means that it will continue to be maintained and improved for years to come. These reasons ultimately made TensorFlow the library of choice for this study.         
 
-TensorFlow was specifically built to run with Python, but also offers APIs for Java, C and Go. However, these APIs are not as extensive as the Python API. Naturally, Python was chosen for this work. Python is a dynamically typed language that supports several programming paradigms such as object-oriented, imperative and functional paradigms. It also serves as a great scripting language, making it suitable for quick and easy experimentation. It is free and open source, unlike Matlab, and is available on several operating systems. The version of Python used in this work was version 3.6.5, while version 1.8.0 of TensorFlow was used.
+TensorFlow was specifically built to run with Python, but also offers APIs for Java, C and Go. However, these APIs are not as extensive as the Python API. Naturally, Python was chosen for this study. Python is a dynamically typed language that supports several programming paradigms such as object-oriented, imperative and functional paradigms. It also serves as a great scripting language, making it suitable for quick and easy experimentation. It is free and open source, unlike Matlab, and is available on several operating systems. The version of Python used in this study was version 3.6.5, while version 1.8.0 of TensorFlow was used.
 
 \section{Data Preprocessing}
 \label{sec:datapreprocessing}
-Section \ref{sec:data} gave an overview of what data was required for this work, how it was obtained, and what the data consists of. Just like for any times series analysis and machine learning problem, data must be made stationary in order to remove trend and seasonality. An exercise was carried out to determine the optimal way to make the data stationary. Data was tested for stationarity by applying the Augmented Dickey-Fuller (ADF) test. The ADF test is a type of statistical test called a unit root test. A unit root test determines how strongly a time series is defined by a trend. The result is interpreted using the p-value from the test. A p-value below a certain threshold, typically 5\%, suggests that a series is stationary, otherwise it is described as non-stationary. 
+Section \ref{sec:data} gave an overview of what data was required for this study, how it was obtained, and what the data consists of. Just like for any times series analysis and machine learning problem, data must be made stationary in order to remove trend and seasonality. An exercise was carried out to determine the optimal way to make the data stationary. Data was tested for stationarity by applying the Augmented Dickey-Fuller (ADF) test. The ADF test is a type of statistical test called a unit root test. A unit root test determines how strongly a time series is defined by a trend. The result is interpreted using the p-value from the test. A p-value below a certain threshold, typically 5\%, suggests that a series is stationary, otherwise it is described as non-stationary. 
 
 Section \ref{subsec:stationary} mentioned several ways to make data stationary. Through trial and error, the chosen approach for making this data stationary was:
 \begin{align}
@@ -441,9 +447,9 @@ The last step in preparing the data was to split the data into training and test
 
 \section{Finding the Optimal Parameters}
 \label{sec:optimalparams}
-When working with feed forward networks, achieving an optimal result requires a careful selection of a combination of network parameters, such as learning rate, number of hidden layers and number of nodes in each layer \cite{hussain2008financial}. Since the aim of this work was not to find a state-of-the-art architecture, but rather measure the impact of different data sets of data on financial forecasting, it was decided to keep things simple and adopt an architecture with just one hidden layer. In addition to being less complex and computationally heavy, literature suggests that a feed forward network with one hidden layer can learn most problems when given appropriate parameters \cite{cybenko1989approximation}. Nonetheless, a methodology for finding the best learning rate and number of nodes in the hidden layer had to be formulated for each model for the benefit of having a fair comparison for predictive performance between models.   
+When working with feed forward networks, achieving an optimal result requires a careful selection of a combination of network parameters, such as learning rate, number of hidden layers and number of nodes in each layer \cite{hussain2008financial}. Since the aim of this study was not to find a state-of-the-art architecture, but rather measure the impact of different data sets of data on financial forecasting, it was decided to keep things simple and adopt an architecture with just one hidden layer. In addition to being less complex and computationally heavy, literature suggests that a feed forward network with one hidden layer can learn most problems when given appropriate parameters \cite{cybenko1989approximation}. Nonetheless, a methodology for finding the best learning rate and number of nodes in the hidden layer had to be formulated for each model for the benefit of having a fair comparison for predictive performance between models.   
 
-Despite the models in this work having different architectures and inputs, the approach for finding the the optimal parameters followed the same pattern. Each model was run several times while iterating through different combinations of learning rates and number of hidden nodes. The range of parameters to iterate through was mainly chosen through trial and error. Each run consists of both training and testing. Performance metrics \ref{eq:accuracy} and \ref{eq:f1} were recorded after each run.
+Despite the models in this study having different architectures and inputs, the approach for finding the the optimal parameters followed the same pattern. Each model was run several times while iterating through different combinations of learning rates and number of hidden nodes. The range of parameters to iterate through was mainly chosen through trial and error. Each run consists of both training and testing. Performance metrics \ref{eq:accuracy} and \ref{eq:f1} were recorded after each run.
 
 A common practice in neural networks is to initialise the network with random weights. Consequently, this means that such a model is not pure, hence it will not give the same result when fed the exact same parameters and inputs. To overcome this, each model was repeatedly run a further $20$ times for each combination of parameters, and the average F1 score and accuracy were recorded. These performance metrics were then plotted in a 3D graph of number of hidden nodes VS learning rate VS accuracy or F1 score. This graph helped visualise the impact of the chosen parameters and thus made it possible to choose the optimal combination of parameters. In the case that the peak performance was recorded on the edge of the graph, the same exercise would be repeated with different ranges of learning rates and number of hidden nodes around that peak.
 
@@ -462,7 +468,7 @@ Figure \ref{fig:basecase} depicts the chosen architecture for the base model.
 \label{fig:basecase}
 \end{figure}
 
-All feed forward networks in this work followed similar network configurations. A Xavier \cite{glorot2010understanding} random initialisation was used for the initialisation of weights. The Xavier initialisation technique is designed to keep the scale of gradients approximately the same at all layers. A dropout rate of $20$\% was also applied to the input data to reduce overfitting when training. Training of data involved minimising a cross entropy cost function while using an Adam optimiser \cite{kingma2014adam}. With regards to activation function, a rectified linear unit (ReLu) was used. Since the aim of this work was not to find the state-of-the-art architecture, there was no need for an exercise to determine the best configuration for our feed forward networks, and thus it was decided to use the same configurations for all networks. 
+All feed forward networks in this study followed similar network configurations. A Xavier \cite{glorot2010understanding} random initialisation was used for the initialisation of weights. The Xavier initialisation technique is designed to keep the scale of gradients approximately the same at all layers. A dropout rate of $20$\% was also applied to the input data to reduce overfitting when training. Training of data involved minimising a cross entropy cost function while using an Adam optimiser \cite{kingma2014adam}. With regards to activation function, a rectified linear unit (ReLu) was used. Since the aim of this study was not to find the state-of-the-art architecture, there was no need for an exercise to determine the best configuration for our feed forward networks, and thus it was decided to use the same configurations for all networks. 
 
 \section{Hypothesis 1: Incorporating Other Stock Market Indices}
 \label{sec:methodh1}
@@ -492,7 +498,9 @@ Figure \ref{fig:metamodelflow} shows a high level data flow of the two-staged en
 \label{sec:methodh3}
 The exact same ensemble procedure in Section \ref{sec:methodh2} was used for this hypothesis, with the exception that each individually trained model in the first stage followed the same architecture in Section \ref{sec:methodh1} rather than the base case in Section \ref{sec:thebasecase}. 
 
+
 \chapter{Results and Evaluation}
+\label{cha:resultsandevaluation}
 \section{The Base Case}
 All the methods mentioned in Chapter \ref{cha:implementation} were trained and tested with data from 2013 to 2018, so as to achieve a fair performance comparison over the same data set. With regards to FTSE data, this translates to $1256$ days of closing prices thus splitting the data $80/20$ will result in $1004$ daily closing prices for training, and $252$ for testing.
 
@@ -559,36 +567,76 @@ Comparing with results in Table \ref{tab:test_results}, there is a a clear impro
         Jul 2007 - 2012 & 0.0011 & 20 & 0.546 & 0.532 \\
         \hline
     \end{tabular}
-    \caption{The chosen parameters and performance results for each model trained over its respective period in the first stage of the ensemble.}
-    \label{tab:test_stage1}
+    \caption{The chosen parameters and performance results for each model trained over its respective period in the first stage of the ensemble for Hypothesis \ref{h2}.}
+    \label{tab:h2_stage1}
 \end{table}
 
+\begin{figure}[h]
+\includegraphics[width=10.5cm]{h2_accuracy.png}
+\centering
+\caption{A 3D plot of the accuracy results for the hypothesis \ref{h2} optimal parameter test.} 
+\label{fig:h2_plot_accuracy}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=10.5cm]{h2_f1.png}
+\centering
+\caption{A 3D plot of the F1 score results for the hypothesis \ref{h2} optimal parameter test.} 
+\label{fig:h2_plot_f1}
+\end{figure}
 
 
 
 
 \section{Hypothesis 3: Incorporating Macroeconomical Parameters and Other Stock Market Indices}
 
-
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|} \hline
+        \textbf{Data Period} & \textbf{Learning Rate} & \textbf{Nodes} & \textbf{F1 Score} & \textbf{Accuracy} \\ \hline
+        Jan 2000 - 2005 & 0.0008 & 12 & 0.669 & 0.640\\
+        Jul 2000 - 2005 & 0.0004 & 14 & 0.681 & 0.652\\
+        Jan 2001 - 2006 & 0.0009 & 16 & 0.695 & 0.632\\
+        Jul 2001 - 2006 & 0.0017 & 19 & 0.688 & 0.614\\
+        Jan 2002 - 2007 & 0.0007 & 17 & 0.648 & 0.602\\
+        Jul 2002 - 2007 & 0.0013 & 15 & 0.655 & 0.610\\
+        Jan 2003 - 2008 & 0.0001 & 23 & 0.703 & 0.653\\
+        Jul 2003 - 2008 & 0.0003 & 19 & 0.715 & 0.706\\
+        Jan 2004 - 2009 & 0.0003 & 25 & 0.653 & 0.671\\
+        Jul 2004 - 2009 & 0.0002 & 12 & 0.694 & 0.671\\
+        Jan 2005 - 2010 & 0.0003 & 15 & 0.715 & 0.687\\
+        Jul 2005 - 2010 & 0.0005 & 17 & 0.704 & 0.667\\
+        Jan 2006 - 2011 & 0.0005 & 19 & 0.671 & 0.627\\
+        Jul 2006 - 2011 & 0.0001 & 17 & 0.703 & 0.671\\
+        Jan 2007 - 2012 & 0.0009 & 21 & 0.649 & 0.623\\
+        Jul 2007 - 2012 & 0.0015 & 23 & 0.643 & 0.603\\
+        \hline
+    \end{tabular}
+    \caption{The chosen parameters and performance results for each model trained over its respective period in the first stage of the ensemble for Hypothesis \ref{h3}.}
+    \label{tab:h3_stage1}
+\end{table}
 
 
 
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{|c|c|c|} \hline
-        \textbf{Method} & \textbf{Accuracy} & \textbf{F1 Score} \\ \hline
-        \textbf{Alternate Baseline} & 0.51984 & 0.68404 \\
-        \textbf{Base Case} & 0.55357 & 0.65241 \\
-        \textbf{Hypothesis \ref{h1}} & 0.66508 & 0.72052 \\
+    \begin{tabular}{|c|c|c|c|c|} \hline
+        \textbf{Method} & \textbf{Learning Rate} & \textbf{Nodes} & \textbf{Accuracy} & \textbf{F1 Score} \\ \hline
+        \textbf{Alternate Baseline} & - & - & 0.51984 & 0.68404 \\
+        \textbf{Base Case} & 0.0016 & 09 & 0.55357 & 0.65241 \\
+        \textbf{Hypothesis \ref{h1}} & 0.0003 & 17 & 0.66508 & 0.72052 \\
+        \textbf{Hypothesis \ref{h2}} & 0.0011 & 47 & 0.53452 & 0.64150 \\
         \hline
     \end{tabular}
-    \caption{Comparison of performance results between base case and alternate baseline}
+    \caption{Table of optimal parameters and top average performance metrics for each method.}
     \label{tab:test_results}
 \end{table}
 
 
 
-\chapter{Conclusions}
+\chapter{Conclusion and Future Work}
+\label{cha:conclusions}
+
 \printbibliography
 \end{document}

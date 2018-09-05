@@ -127,18 +127,7 @@
     \textsf{wc~-w}.
   \fi
 
-  This includes the body of the report%
-  \ifthenelse{    \equal{\UoYCSP@includes}{\@empty}
-              \and\equal{\UoYCSP@excludes}{\@empty}}
-             {\ only}
-             {\ifthenelse{\equal{\UoYCSP@includes}{\@empty}}%
-                         {}%
-                         {, and \UoYCSP@includes}%
-              \ifthenelse{\equal{\UoYCSP@excludes}{\@empty}}%
-                         {}%
-                         {, but not \UoYCSP@excludes}%
-             }%
-             .%
+  This includes the body of the report only.
 }
 
 \let\old@abstract\abstract
