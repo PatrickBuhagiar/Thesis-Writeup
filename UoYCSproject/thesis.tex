@@ -20,7 +20,8 @@
 \excludes{\autoref{cha:quoteex}}
 
 \abstract{ 
-   TODO
+     Financial forecasting is increasingly becoming a popular area of interest in machine learning, mainly due to the high benefits that it offers through several commercial applications \cite{majhi2007stock}. Choosing the right data is a crucial step to building the right predictive model. This study attempts to measure the impact of incorporating macroeconomic data and closing prices from global stock markets when forecasting the direction of the FTSE stock market index. The analysis of the results show that while global stocks markets greatly influence the predictive perform of a model, macroeconomic data did not achieve any significant improvement to predicting the direction of the index. 
+     
 }
 
 \dedication{To all students everywhere}
@@ -41,7 +42,7 @@
 \label{cha:Introduction}
 For millennia, people have yearned for the ability to predict the future. while this ability has remained elusive, it is possible, now more than ever, to make an informed estimates thanks to the recent advancements in machine learning. Research keeps pushing the boundaries of machine learning everyday, from discovering new methods and architectures, to building more efficient and dedicated hardware that help expand existing capabilities. The main driver behind this push is not just academia, but also the industry.  Financial forecasting is one example where the industry is heavily investing in as it offers high benefits through many commercial applications \cite{majhi2007stock}.
 
-Financial forecasting is the ability to predict the outcome of companies, markets or economies. For entities such as investment firms, knowing what the future holds can be useful because it allows them to make smart investments, and thus maximise profits. An essential aspect to financial forecasting is choosing the most influential data \cite{zhong2017forecasting}. With regards to stock market prediction, literature has provided several methods and architectures that combine different external data sets to predict stock market indices, such as economic data, fundamental analysis, exchange rates, and even calendar based events such as earning announcements. This study will add further to this pool of research by measuring the impact of macroeconomical data and stock market data from some of the most influential markets from around the world when predicting the direction of the FTSE stock market index.   
+Financial forecasting is the ability to predict the outcome of companies, markets or economies. For entities such as investment firms, knowing what the future holds can be useful because it allows them to make smart investments, and thus maximise profits. An essential aspect to financial forecasting is choosing the most influential data \cite{zhong2017forecasting}. With regards to stock market prediction, literature has provided several methods and architectures that combine different external data sets to predict stock market indices, such as economic data, fundamental analysis, exchange rates, and even calendar based events such as earning announcements. This study will add further to this pool of research by measuring the impact of macroeconomic data and stock market data from some of the most influential markets from around the world when predicting the direction of the FTSE stock market index.   
 
 The following chapters are organised as follows. Chapter \ref{cha:literaturereview}, Literature Review, will explain the underlying economic, financial theory and machine learning concepts, while discussing different approaches for financial forecasting. Chapter \ref{cha:problemanalysis}, Problem Analysis, compares and contrast the different approaches to stock market prediction, and clearly defines the objectives, requirements, and chosen approach for experimentation in this study. Chapter \ref{cha:implementation}, Design and Implementation, further describes in detail the design choices and methodology for achieving the objectives mentioned in Chapter \ref{cha:problemanalysis}. The results of this study are shown and discussed in Chapter \ref{cha:resultsandevaluation}, and finally Chapter \ref{cha:conclusions} closes off with some final remarks and potential future work. 
 
@@ -265,7 +266,7 @@ A feed forward neural network is an architecture that consists of layers of neur
 Some of the architectural decisions that must be taken with feed forward networks include deciding on how many hidden layers and nodes should be included in the network. Cybenko \cite{cybenko1989approximation} introduced the first version of the universal approximation theorem which states that a feed-forward network with one hidden layer, a certain number of nodes and the appropriate parameters is capable of learning the majority of problem cases. Hornik \cite{hornik1991approximation} further expands on this theorem and shows that it is not the choice of activation function, but rather the choice of feed forward architecture that brings out the full potential of being universal approximators. Given this theorem, one might wonder why anyone would need a deep architecture. While this theorem holds for \textit{representing} a wide array of problems, it does not deal with the algorithmic \textit{learnability} of parameters. It was always possible to build deep networks with feed forward networks. They were just not particularly good at training them before Hinton et al. \cite{hinton2006fast} showed how a many-layered feed forward neural network can be effectively trained one layer at a time. 
 
 \section{Financial Forecasting}
-Stock market forecasting is one of the most challenging areas of research lately due to stock markets being "\textit{essentially dynamic, non-linear, complicated, non-parametric and chaotic in nature}" \cite{tan2005brain}. Additionally, stock market movements are influenced by several macroeconomical factors such as political events, economic conditions, movement of other stock markets and investor expectations \cite{zhang2009stock}. Despite these challenges, predicting stock markets is a very attractive problem to solve thanks to the high benefits that it can offer through many commercial applications \cite{majhi2007stock}. 
+Stock market forecasting is one of the most challenging areas of research lately due to stock markets being "\textit{essentially dynamic, non-linear, complicated, non-parametric and chaotic in nature}" \cite{tan2005brain}. Additionally, stock market movements are influenced by several macroeconomic factors such as political events, economic conditions, movement of other stock markets and investor expectations \cite{zhang2009stock}. Despite these challenges, predicting stock markets is a very attractive problem to solve thanks to the high benefits that it can offer through many commercial applications \cite{majhi2007stock}. 
 
 The difficulty of stock market prediction has raised questions on whether this is achievable. The EMH and the Random-Walk Hypothesis both claim that there is no value to predicting a market price since the current price truly reflects the value of the stock. However, researchers believe that markets are actually inefficient since market participants are unable to respond immediately to newly released information \cite{jensen1978some}. 
 
@@ -299,7 +300,7 @@ As mentioned earlier, selecting the most suitable inputs for financial forecasti
 
 The most popular type of input for stock market prediction is stock index data, which includes opening or closing prices, as well as the daily highest and lowest values per day. This suggests that a significant amount of research prefers to use simple input data to provide predictions. \cite{barnes2000study, donaldson1999neural, halliday2004equity, tan1995conservative, pai2005hybrid, pantazopoulos1998financial} all used daily closing prices as input, while \cite{andreou2000testing, fernandez2000profitability, pan2005predicting,tang2002web} also used the closing price from previous days. 
 
-Some studies have combined closing prices with other stock market indices, or external factors such as macroeconomical and financial variables. Examples of external factors are currency exchange rates, gold coin value, interest rates and earning announcements. \cite{ajith2003hybrid} attempts to predict the NASDAQ stock index by using closing prices from NASDAQ and seven other indices. \cite{huang2005forecasting} uses both the S\&P 500 and USD/YEN exchange rate to predict the NIKKEI stock market index. \cite{phua2001neural} forecasts the Singapore stock exchange using volume, opening, lowest, highest and closing index prices of the DJIA, NASDAQ, HIS and NIKKEI indices. \cite{siekmann1999information} used the DJIA index and the USD/EURO exchange rate to predict the DAX stock market index. \cite{tabrizi2000stock} forecasts the TEPIX stock index using the gold coin value and the USD exchange rate. \cite{levodeanschi2016} investigated the impact of using earnings calendar information in portfolio construction techniques. In general, \cite{atsalakis2009surveying} highlights that researchers tend to use a combination of exchange rates and stock index values for predicting emerging markets as they are more likely to be influenced by these factors than well established markets. Other papers that used macroeconomical and financial factors are: \cite{gradojevic2002neuro}, which used lagged interest rates and lagged order flow; \cite{thawornwong2004adaptive}, which used thirty one financial and economic variables including producer price index, industrial price index, consumer price index and money stock; and \cite{setnes1999fuzzy}, which predicted the Amsterdam stock exchange (AEX) using Dutch macroeconomic data such as money supply, long and short term interest rates, economic growth and inflation.
+Some studies have combined closing prices with other stock market indices, or external factors such as macroeconomic and financial variables. Examples of external factors are currency exchange rates, gold coin value, interest rates and earning announcements. \cite{ajith2003hybrid} attempts to predict the NASDAQ stock index by using closing prices from NASDAQ and seven other indices. \cite{huang2005forecasting} uses both the S\&P 500 and USD/YEN exchange rate to predict the NIKKEI stock market index. \cite{phua2001neural} forecasts the Singapore stock exchange using volume, opening, lowest, highest and closing index prices of the DJIA, NASDAQ, HIS and NIKKEI indices. \cite{siekmann1999information} used the DJIA index and the USD/EURO exchange rate to predict the DAX stock market index. \cite{tabrizi2000stock} forecasts the TEPIX stock index using the gold coin value and the USD exchange rate. \cite{levodeanschi2016} investigated the impact of using earnings calendar information in portfolio construction techniques. In general, \cite{atsalakis2009surveying} highlights that researchers tend to use a combination of exchange rates and stock index values for predicting emerging markets as they are more likely to be influenced by these factors than well established markets. Other papers that used macroeconomic and financial factors are: \cite{gradojevic2002neuro}, which used lagged interest rates and lagged order flow; \cite{thawornwong2004adaptive}, which used thirty one financial and economic variables including producer price index, industrial price index, consumer price index and money stock; and \cite{setnes1999fuzzy}, which predicted the Amsterdam stock exchange (AEX) using Dutch macroeconomic data such as money supply, long and short term interest rates, economic growth and inflation.
 
 The majority of the articles mentioned in \cite{atsalakis2009surveying} found input data preprocessing to be useful and necessary. Sensitivity analysis is sometimes employed to help remove any redundant inputs. In several cases, input data has a wide range of values, which might reduce the effectiveness of training procedures. This can be solved by normalising the data. Alternative techniques are to use Principal Component Analysis (PCA) \cite{ajith2003hybrid}, Z-score \cite{leigh2002analysis}, and an ANFIS techniques used by \cite{atsalakis2006neuro}. 
 
@@ -318,7 +319,7 @@ This study uses historical closing prices from some of the top global financial 
 
 \section{Objectives}
 \label{sec:objectives}
-This study seeks to measure the impact of external factors, particularly the closing prices of other stock markets and macroeconomical data, when predicting the direction of the FTSE stock market index. It does not seek to introduce a new trading tool that maximises profit, or a state-of-the-art technique for financial forecasting, but rather investigate how particular data sets can improve predictive performance. Overall, this study seeks to test the following hypotheses:
+This study seeks to measure the impact of external factors, particularly the closing prices of other stock markets and macroeconomic data, when predicting the direction of the FTSE stock market index. It does not seek to introduce a new trading tool that maximises profit, or a state-of-the-art technique for financial forecasting, but rather investigate how particular data sets can improve predictive performance. Overall, this study seeks to test the following hypotheses:
 
 \begin{enumerate}
     \item \label{h1} \textbf{The use of closing prices from other stock market indices improves the performance for predicting the direction of a stock market index.}
@@ -326,7 +327,7 @@ This study seeks to measure the impact of external factors, particularly the clo
     \item \label{h3} \textbf{The combination of macroeconomic parameters and closing prices from other stock market indices improves the performance for predicting  the direction of a stock market index}
 \end{enumerate}
 
-For all 3 hypothesis, the null hypothesis is that the method in question makes no significant difference in prediction accuracy when compared to an underlying base case.
+For all 3 hypothesis, the null hypothesis is that the method in question makes no significant difference in prediction accuracy when compared to underlying base cases.
 
 \section{Requirements}
 \label{sec:requirements}
@@ -336,12 +337,12 @@ The requirements for this study are:
     \item \label{basecase} \textbf{Formulate a base case for predicting the direction of the FTSE index:} Two base cases were used. Model results were compared with these base cases to determine whether an improvement in predictive performance was achieved.  
     \begin{enumerate}
         \item \label{basecase1} \textbf{Base case 1:} This base is simply always predicting the direction of the stock market as going up. 
-        \item \label{basecase2} \textbf{Base case 2:} This base case is a simple model that only uses historical prices of the FTSE index, without using closing prices from other stock indices or macroeconomical parameters. 
+        \item \label{basecase2} \textbf{Base case 2:} This base case is a simple model that only uses historical prices of the FTSE index, without using closing prices from other stock indices or macroeconomic parameters. 
     \end{enumerate}
     
     \item \textbf{Formulate a model that incorporates historical FTSE closing prices with closing prices from other stock market indices for predicting the direction of the FTSE index:} This model was used to confirm whether hypothesis \ref{h1} holds.
-    \item \textbf{Formulate a model that incorporates historical FTSE closing prices with macroeconomical parameters for predicting the direction of the FTSE index:} This model was used to confirm whether hypothesis \ref{h2} holds.
-    \item \textbf{Formulate a model that incorporates historical FTSE closing prices with both macroeconomical parameters and closing prices from other stock market indices for predicting the direction of the FTSE index:} This model was used to confirm whether hypothesis \ref{h3} holds.
+    \item \textbf{Formulate a model that incorporates historical FTSE closing prices with macroeconomic parameters for predicting the direction of the FTSE index:} This model was used to confirm whether hypothesis \ref{h2} holds.
+    \item \textbf{Formulate a model that incorporates historical FTSE closing prices with both macroeconomic parameters and closing prices from other stock market indices for predicting the direction of the FTSE index:} This model was used to confirm whether hypothesis \ref{h3} holds.
     \item \label{framework} \textbf{Develop a framework that can be used to train, predict and evaluate the performance of the above models:} More information on the performance measures and evaluation criteria will be covered in the next section. 
 \end{enumerate}
 
@@ -498,13 +499,13 @@ The architecture for this hypothesis is very similar to that used in the previou
 
 A closer look at the historical closing index prices of different stock markets shows that not all stock markets open on the same days. This is mainly due to stock markets not operating on country specific bank holidays. To overcome this issue, whenever an index does not have a closing price for a particular date, the last known closing price would be used instead.  
 
-\section{Hypothesis 2: Incorporating Macroeconomical Parameters}
+\section{Hypothesis 2: Incorporating macroeconomic Parameters}
 \label{sec:methodh2}
-As per Requirement \ref{h2}, this hypothesis requires incorporating macroeconomical data with the historical closing prices of the FTSE. Section \ref{sec:discussion} mentioned the motivation for approaching this problem with an ensemble approach. 
+As per Requirement \ref{h2}, this hypothesis requires incorporating macroeconomic data with the historical closing prices of the FTSE. Section \ref{sec:discussion} mentioned the motivation for approaching this problem with an ensemble approach. 
 
 The first stage of the ensemble consisted of training and testing several prediction models over different periods of time. The architecture for these models were similar to that used in the base case described in Section \ref{sec:thebasecase}. Models were trained and tested over periods of five years, however the period of data for each model was shifted by six months. A total of $16$ models were created, and cover stock index data from 2000 to 2013. For each model, a similar exercise to that described in Section \ref{sec:optimalparams} was performed to find the optimal parameters. Unlike in Section \ref{sec:thebasecase} and \ref{sec:methodh1}, where only the average performance was recorded for several combination of parameters, this stage only persisted the trained model that achieved the highest accuracy.  
 
-The second stage of the ensemble involved incorporating the outputs of these pre-trained models, macroeconomical data and the closing price of the FTSE stock market index as inputs through another feed forward network, which hereafter will be referred to as the meta model. The meta model requires a different data set from the first stage for training and testing. In order to achieve a fair comparison in predictive performance, the meta model was also trained and tested with data between the year 2013 and 2018, as was done in Section \ref{sec:thebasecase} and \ref{sec:methodh1}. The optimal parameters were found using the same exercise discussed in Section \ref{sec:optimalparams}.  
+The second stage of the ensemble involved incorporating the outputs of these pre-trained models, macroeconomic data and the closing price of the FTSE stock market index as inputs through another feed forward network, which hereafter will be referred to as the meta model. The meta model requires a different data set from the first stage for training and testing. In order to achieve a fair comparison in predictive performance, the meta model was also trained and tested with data between the year 2013 and 2018, as was done in Section \ref{sec:thebasecase} and \ref{sec:methodh1}. The optimal parameters were found using the same exercise discussed in Section \ref{sec:optimalparams}.  
 
 Figure \ref{fig:metamodelflow} shows a high level data flow of the two-staged ensemble model. All the outputs of the pre-trained models consist of either $1$ or $0$, signifying whether they predicted the FTSE index will rise or fall. Each macroeconomic parameter consists of three inputs, which map to the actual value in the last three quarters. Finally, another three inputs were added that map to the last three closing prices of the FTSE index. 
 
@@ -516,7 +517,7 @@ Figure \ref{fig:metamodelflow} shows a high level data flow of the two-staged en
 \end{figure}
 
 
-\section{Hypothesis 3: Incorporating Macroeconomical Parameters and Other Stock Market Indices}
+\section{Hypothesis 3: Incorporating macroeconomic Parameters and Other Stock Market Indices}
 \label{sec:methodh3}
 The exact same ensemble procedure in Section \ref{sec:methodh2} was used for this hypothesis, with the exception that each individually trained model in the first stage followed the same architecture in Section \ref{sec:methodh1} rather than the base case in Section \ref{sec:thebasecase}. 
 
@@ -569,7 +570,7 @@ This hypothesis involved incorporating the closing price of other stock markets 
 
 Taking a look at Table \ref{tab:test_results}, an increase in both accuracy and F1 score was achieved with respect to base case 1 and 2, where accuracy increased by $+14.52$\% and $+11.15$\% respectively, whereas the F1 score increased by $+0.0365$ and $+0.0681$ respectively.
 
-\section{Hypothesis 2: Incorporating Macroeconomical Parameters}
+\section{Hypothesis 2: Incorporating macroeconomic Parameters}
 This hypothesis involved incorporating macroeconomic parameters with the FTSE stock market index. Recall from Section \ref{sec:methodh2} that this model consists of a two staged process.
 
 The first stage involved training models over shifted 5 year periods of data from 2000 to 2013. These models only incorporated closing prices of the FTSE index. For each period, an exercise for finding the optimal parameters was performed. Table \ref{tab:h2_stage1} shows the optimal parameters chosen for each model, which was trained and tested over a particular period, along with the accuracy and F1 score that was achieved. 
@@ -613,10 +614,10 @@ The first stage involved training models over shifted 5 year periods of data fro
 \label{fig:h2_plot_f1}
 \end{figure}
 
-The second stage involved incorporating the predictions form these models with lagged macroeconomical data. Figure \ref{fig:h2_plot_accuracy} and \ref{fig:h2_plot_f1} show the results from the optimal parameter test for the second stage. The best accuracy was achieved with learning rate $0.0011$ and $47$ hidden nodes. 
+The second stage involved incorporating the predictions form these models with lagged macroeconomic data. Figure \ref{fig:h2_plot_accuracy} and \ref{fig:h2_plot_f1} show the results from the optimal parameter test for the second stage. The best accuracy was achieved with learning rate $0.0011$ and $47$ hidden nodes. 
 As shown in Table \ref{tab:test_results}, disappointing results were achieved. This hypothesis did not perform better than the second base case in terms of both accuracy and F1 score, and only achieved a small increase in accuracy over the first base case. With respect to accuracy, this hypothesis achieved $+1.47$\% and $-0.0191$\% compared to base case 1 and 2, and  $-0.0425$ and $-0.0109$ for the F1 score.   
 
-\section{Hypothesis 3: Incorporating Macroeconomical Parameters and Other Stock Market Indices}
+\section{Hypothesis 3: Incorporating macroeconomic Parameters and Other Stock Market Indices}
 This hypothesis followed a similar approach to that in the previous hypothesis, with the exception that each model trained in the first stage also incorporated closing prices from other stock markets. Table \ref{tab:h3_stage1} shows the optimal parameters chosen for each period in the first stage of the process, along with the achieved accuracy and F1 score. 
 
 
@@ -691,7 +692,7 @@ The next step was to perform the Wilcoxon signed rank test on all pairs of resul
     \item The third hypothesis with respect to the first hypothesis.
 \end{enumerate}
 
-The null hypothesis for each hypothesis in Section \ref{sec:objectives} was defined as the method in question not achieving a significant difference in accuracy when compared to an underlying base case. This means that the null hypothesis for hypothesis \ref{h2} can be accepted, while the null hypothesis for both hypothesis \ref{h1} and \ref{h3} can be rejected.
+The null hypothesis for each hypothesis in Section \ref{sec:objectives} was defined as the method in question not achieving a significant difference in accuracy when compared to  underlying base cases. This means that the null hypothesis for hypothesis \ref{h2} can be accepted, while the null hypothesis for both hypothesis \ref{h1} and \ref{h3} can be rejected.
 
 \begin{table}[h]
     \centering
@@ -711,6 +712,33 @@ The null hypothesis for each hypothesis in Section \ref{sec:objectives} was defi
 
 \chapter{Conclusion and Future Work}
 \label{cha:conclusions}
+
+\section{Summary}
+Stock market prediction provides an excellent opportunity for entities such as investment firms to maximise on profits by making informed decisions on whether to buy or hold stock based on the market predicted outcome. This is no trivial task however, as stock markets are chaotic in nature and continuously fluctuating. Literature has shown that choosing the right data is crucial when it comes to financial forecasting. This study sought to measure the impact that macroeconomic data and closing prices from global markets have on predicting the direction of the FTSE stock market index. 
+
+Three hypotheses were formulated with the aim of determining whether any significant improvement in accuracy is achieved when comparing with underlying base cases. The base cases involved two models, one that always predicted the direction of the FTSE index as up, and the other a simple model that only uses FTSE closing data from the past few days. Three other experiments that represent the three hypotheses involved creating:
+\begin{enumerate}
+    \item a model that incorporated closing prices from other stock markets with FTSE data.
+    \item a model that incorporated macroeconomic parameters with FTSE data.
+    \item a model that incorporated both macroeconomic parameters and closing prices from other stock markets with FTSE data. 
+\end{enumerate}
+
+An exercise had to be performed for finding the optimal learning rate and number of hidden nodes for each feed forward network in the study. Predictive performance was measured using the accuracy and F1 score metrics, while the Kruskal-Wallis and Wicoxon signed rank tests were used to determine whether any significant increase in accuracy was achieved when compared with the base cases. The following section discusses the findings of this study.
+
+\section{Discussion}
+ The worst performing model was hypothesis \ref{h2} which did not achieve a significant improvement in accuracy over the second base case. Hypothesis \ref{h3}, which just like hypothesis \ref{h2} incorporates macroeconomic parameters, also did not achieve any significant increase in accuracy over hypothesis \ref{h1}. These two observations seem to suggest that incorporating macroeconomic parameters into models does not help increase predictive performance. This may be true, however there could be an alternative reason to these results. While the macroeconomic parameters chosen are regarded as important parameters for describing the state of an economy, the possibility remains that these parameters were not the most suitable macroeconomic parameters for stock market prediction. This study, given more time, could have performed a more informed exercise for determining the macroeconomic parameters with the highest correlation with stock market indices. Another possibility is that the chosen ensemble approach with two feed forward network stages was not ideal for incorporating such data. Alternatively, the way the macroeconomic parameters were preprocessed and fed into the meta model was not ideal. Clearly, there is plenty of room for improvement with regards to incorporating macroeconomic data. 
+
+On the other hand, incorporating closing stock prices from global markets was a success, with hypothesis \ref{h1} achieving the best accuracy. Interestingly, the ensemble approach in hypothesis \ref{h3} did not outperform the single staged feed forward model, which suggests that less complex architectures do perform best. This also supports the earlier argument about the chosen ensemble approach not being suitable for incorporating macroeconomic data in such a way. While the chosen ensemble approach may not have been the ideal choice of architecture, given more time, it would have been interesting to compare hypothesis \ref{h1} with a similar ensemble that naively only takes the most common prediction from the pre-trained models.
+
+While this study showed that external data does help improve the prediction accuracy of model, it also showed that it is not always obvious which data is best, and thus a lot more effort must be made into finding the most influential data for improving a model.
+
+\section{Future Work}
+Time was a limiting factor in this study. Had this not been the case, the following could have been attempted:
+\begin{itemize}
+    \item \textbf{Experiment with other architectures, other than feed forward networks.} This study skimmed over different approaches such as using genetic algorithms, recurrent neural networks, SVM and deep learning. Feed forward networks were chosen because they are non complex yet still effective, and because the main aim was not to find the state-of-the art approach, but to measure impact of using certain data. Nonetheless, another architecture could have be more suitable for incorporating macroeconomic data. 
+    \item \textbf{Perform an exercise to find suitable macroeconomic parameters.} The five macroeconomic parameters used in this study were chosen because they are considered important parameters for describing an economy. Clearly, better parameters could have been chosen. The reason for choosing only five was to keep things simple. 
+    \item \textbf{Predict the actual closing price or percentage increase of the FTSE index}. It was decided to stick to predicting the direction not only for simplicity, but also because the study was only interested in the impact of data, rather than to try and measure profits. Financial forecasting as a regression problem rather than a binary problem is more useful in the real world. Predicting whether a stock will rise or fall would not equate to profit, because a single wrong prediction could easily be large enough to wipe out any profits made in the past. A more ambitious idea would be to incorporate this study into a trading strategy and measure the impact of data on increasing profits. 
+\end{itemize}
 
 \printbibliography
 \end{document}
