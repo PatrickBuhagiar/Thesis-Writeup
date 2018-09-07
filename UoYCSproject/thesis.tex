@@ -8,11 +8,11 @@
 \addbibresource{refs.bib}
 
 \author{Patrick Buhagiar}
-\title{The Impact of Macroeconomic Parameters and Market Contagion on Forecasting Financial Markets}
+\title{The Impact of Macroeconomic Parameters and Global Markets on Forecasting the FTSE Index}
 \date{2018-September-11}
 \supervisor{Dimitar Kazakov}
 \MIP
-\wordcount{3884}
+\wordcount{9500}
 
 \includes{Appendices \ref{cha:usefulpackages}, \ref{cha:gotchas} and
   \ref{cha:deptfac}}
@@ -39,7 +39,7 @@
 
 \chapter{Introduction}
 \label{cha:Introduction}
-For millennia, people have yearned for the ability to predict the future. Thankfully, recent advancements in machine learning have brought us closer to this reality, in a limited way. Nonetheless, research keeps pushing the boundaries of machine learning everyday, from discovering new methods and architectures, to building more efficient and dedicated hardware that help expand existing capabilities. The main driver behind this push is not just academia, but also the industry.  Financial forecasting is one example where the industry is heavily investing in as it offers high benefits through many commercial applications \cite{majhi2007stock}.
+For millennia, people have yearned for the ability to predict the future. while this ability has remained elusive, it is possible, now more than ever, to make an informed estimates thanks to the recent advancements in machine learning. Research keeps pushing the boundaries of machine learning everyday, from discovering new methods and architectures, to building more efficient and dedicated hardware that help expand existing capabilities. The main driver behind this push is not just academia, but also the industry.  Financial forecasting is one example where the industry is heavily investing in as it offers high benefits through many commercial applications \cite{majhi2007stock}.
 
 Financial forecasting is the ability to predict the outcome of companies, markets or economies. For entities such as investment firms, knowing what the future holds can be useful because it allows them to make smart investments, and thus maximise profits. An essential aspect to financial forecasting is choosing the most influential data \cite{zhong2017forecasting}. With regards to stock market prediction, literature has provided several methods and architectures that combine different external data sets to predict stock market indices, such as economic data, fundamental analysis, exchange rates, and even calendar based events such as earning announcements. This study will add further to this pool of research by measuring the impact of macroeconomical data and stock market data from some of the most influential markets from around the world when predicting the direction of the FTSE stock market index.   
 
@@ -176,7 +176,7 @@ Another theory consistent with EMH is the random walk hypothesis. It states that
 \subsubsection{Chaos Theory}
 Chaos theory is a mathematical concept that deals with nonlinear models, essentially anything which is effectively impossible to predict or control, such as weather, brain states or, in this case, stock markets. In chaos theory, price changes can be determined through mathematical equations predicting factors such as a trader's own personal motives, volume changes, acceleration of the changes, and the momentum behind the changes \cite{chaostheory}. Chaos theory however is highly dependent on the initial conditions set, and produces very diverging outputs with the slightest change in inputs \cite{kellert1993wake}. 
 
-\section{Analysis Techniques}
+\section{Financial Analysis Techniques}
 \subsection{Technical Analysis}
 Technical analysis assumes that history tends to repeat itself, thus analysing past patterns can be used for predictive purposes \cite{levy1966conceptual}. For financial markets, this means looking at past stock prices for predictions rather than its components. Technical analysis is based on three major assumptions:
 \begin{enumerate}
@@ -190,7 +190,7 @@ Fundamental analysis takes a wider approach than technical analysis by studying 
 
 Unlike technical analysis, fundamental analysis assumes that the stock market is not fully representative of the actual value of the stock. Fundamentalists however do believe that the market will reflect these fundamentals in the long run, thus encouraging investors to find opportunities to buy stocks at a reduced price by estimating the actual value of the stock. 
 
-\subsection{Time series Analysis}
+\subsection{Time Series Analysis}
 A time series is a collection of numerical data points collected at constant time in the form of a sequence. With time series analysis, one can obtain meaningful statistics and other characteristics of data, such that one can understand the data and build a model based on the given patterns. Extracting such models will allow one to forecast future values. 
 
 Two key properties of time series are that they are time dependent, and that most of them have some form of seasonality trends. Seasonality trends mean that the time series consists of variations specific to a particular time frame. Due to these properties, forecasting time series requires the data to be stationary. A time series is said to be stationary if both the mean and autocovariances do not depend on the date \cite{hamilton1994time}. 
@@ -292,10 +292,10 @@ Another recent trend in financial time series prediction is the use of ensemble 
 \section{Stock Market Forecasting}
 The previous chapter mentioned several techniques for stock market prediction such as using statistical models, ANNs, SVM and ensemble methods. Despite having all these different approaches, the no free lunch theorem \cite{wolpert1997no} states that there is no singular model that works best for every problem. This means that while a particular approach might work for a particular problem, it might not hold for another. 
 
-Atsalakis and Valavanis \cite{atsalakis2009surveying} provide an excellent survey on $100$ scientific articles on stock market forecasting. These articles together model $24$ stock market indices from around the world, both from well developed markets such as the U.K., U.S.A and Japan, and emerging markets such as Latvia, Singapore and Turkey. The most popular area for research is American stock indices such as S\&P 500, NASDAQ and Dow Jones.
+Atsalakis and Valavanis \cite{atsalakis2009surveying} provide an excellent survey on $100$ scientific articles on stock index forecasting. These articles together model $24$ stock market indices from around the world, both from well developed markets such as the U.K., U.S.A and Japan, and emerging markets such as Latvia, Singapore and Turkey. The most popular area for research is American stock indices such as S\&P 500, NASDAQ and Dow Jones.
 
 \subsection{Inputs}
-As mentioned earlier, selecting the most suitable inputs for financial forecasting is an essential requirement \cite{zhong2017forecasting}. In the aforementioned survey by Atsalakis and Valavanis \cite{atsalakis2009surveying}, the number of inputs used ranged from $2$ to $61$ variables. 
+As mentioned earlier, selecting the most suitable inputs for financial forecasting is essential \cite{zhong2017forecasting}. In the aforementioned survey by Atsalakis and Valavanis \cite{atsalakis2009surveying}, the number of inputs used ranged from $2$ to $61$ variables. 
 
 The most popular type of input for stock market prediction is stock index data, which includes opening or closing prices, as well as the daily highest and lowest values per day. This suggests that a significant amount of research prefers to use simple input data to provide predictions. \cite{barnes2000study, donaldson1999neural, halliday2004equity, tan1995conservative, pai2005hybrid, pantazopoulos1998financial} all used daily closing prices as input, while \cite{andreou2000testing, fernandez2000profitability, pan2005predicting,tang2002web} also used the closing price from previous days. 
 
@@ -318,23 +318,30 @@ This study uses historical closing prices from some of the top global financial 
 
 \section{Objectives}
 \label{sec:objectives}
-This study seeks to measure the impact of external factors, particularly the closing prices of other stock markets and macroeconomical data, when predicting the direction of the FTSE stock market index. It does not seek to introduce a new trading tool that maximises profit, or a state-of-the-art architecture for financial forecasting, but rather investigate how particular data sets can improve predictive performance. Overall, this study seeks to confirm the following null hypotheses:
+This study seeks to measure the impact of external factors, particularly the closing prices of other stock markets and macroeconomical data, when predicting the direction of the FTSE stock market index. It does not seek to introduce a new trading tool that maximises profit, or a state-of-the-art technique for financial forecasting, but rather investigate how particular data sets can improve predictive performance. Overall, this study seeks to test the following hypotheses:
 
 \begin{enumerate}
     \item \label{h1} \textbf{The use of closing prices from other stock market indices improves the performance for predicting the direction of a stock market index.}
     \item \label{h2} \textbf{The use of macroeconomic parameters improves the performance for predicting the direction of a stock market index.}
-    \item \label{h3} \textbf{If both previous hypotheses are true, then the combination of macroeconomic parameters and closing prices from other stock market indices will further improve the performance for predicting the direction of a stock market index.}
+    \item \label{h3} \textbf{The combination of macroeconomic parameters and closing prices from other stock market indices improves the performance for predicting  the direction of a stock market index}
 \end{enumerate}
+
+For all 3 hypothesis, the null hypothesis is that the method in question makes no significant difference in prediction accuracy when compared to an underlying base case.
 
 \section{Requirements}
 \label{sec:requirements}
 The requirements for this study are:
 
 \begin{enumerate}
-    \item \label{basecase} \textbf{Formulate a base case for predicting the direction of the FTSE index:} This base case is a simple model that only uses historical prices of the FTSE index, without using closing prices from other stock indices or macroeconomical parameters. The performance of other methodologies will be compared with this base case to determine whether an improvement in predictive performance has been made.  
-    \item \textbf{Formulate a model that incorporates historical FTSE closing prices with closing prices from other stock market indices for predicting the direction of the FTSE index:} This model will be used to confirm whether hypothesis \ref{h1} holds.
-    \item \textbf{Formulate a model that incorporates historical FTSE closing prices with macroeconomical parameters for predicting the direction of the FTSE index:} This model will be used to confirm whether hyptothesis \ref{h2} holds.
-    \item \textbf{Formulate a model that incorporates historical FTSE closing prices with both macroeconomical parameters and closing prices from other stock market indices for predicting the direction of the FTSE index:} This model will be used to confirm whether hypothesis \ref{h3} holds.
+    \item \label{basecase} \textbf{Formulate a base case for predicting the direction of the FTSE index:} Two base cases were used. Model results were compared with these base cases to determine whether an improvement in predictive performance was achieved.  
+    \begin{enumerate}
+        \item \label{basecase1} \textbf{Base case 1:} This base is simply always predicting the direction of the stock market as going up. 
+        \item \label{basecase2} \textbf{Base case 2:} This base case is a simple model that only uses historical prices of the FTSE index, without using closing prices from other stock indices or macroeconomical parameters. 
+    \end{enumerate}
+    
+    \item \textbf{Formulate a model that incorporates historical FTSE closing prices with closing prices from other stock market indices for predicting the direction of the FTSE index:} This model was used to confirm whether hypothesis \ref{h1} holds.
+    \item \textbf{Formulate a model that incorporates historical FTSE closing prices with macroeconomical parameters for predicting the direction of the FTSE index:} This model was used to confirm whether hypothesis \ref{h2} holds.
+    \item \textbf{Formulate a model that incorporates historical FTSE closing prices with both macroeconomical parameters and closing prices from other stock market indices for predicting the direction of the FTSE index:} This model was used to confirm whether hypothesis \ref{h3} holds.
     \item \label{framework} \textbf{Develop a framework that can be used to train, predict and evaluate the performance of the above models:} More information on the performance measures and evaluation criteria will be covered in the next section. 
 \end{enumerate}
 
@@ -343,15 +350,16 @@ Performance measures can be classified as statistical measures or non-statistica
 
 Examples of statistical measures are the root mean square error (RMSE), $R^2$, F1 score, the mean absolute error (MAE), the mean squared prediction error (MSPE), and statistical indicators such as autocorrelation, correlation coefficient, and standard deviation. 
 
-Non-statistical performance measure are less common, and in financial forecasting are typically related with the economical side of the forecast. An example is accuracy, is the percentage of correct predictions of the model. Other non-statistical measures measure the profitability of the model, such as rate of return or average annual profit.
+Non-statistical performance measure are less common, and in financial forecasting are typically related with the economical side of the forecast. An example is accuracy, which is the percentage of correct predictions. Other non-statistical measures measure the profitability of the model, such as rate of return or average annual profit.
 
-This study involves predicting the direction of the FTSE stock market index, thus making it a binary classification problem. As mentioned in the previous section, it is pertinent to understand that the aim of this study is to determine whether combining particular sets of data will improve the predictive performance of an algorithm, and not to find the state-of-the-art approach for maximising profits. Nonetheless, prediction accuracy does not directly equate to more profit. When predicting direction of stock markets, you could achieve a high accuracy, however one incorrect prediction could be a drop large enough to wipe out any profits made in previous prediction. Thus, these findings are not intended to be used directly in complete trading strategies, despite perhaps being a stepping stone to improving trading strategies in the future. 
+This study involves predicting the direction of the FTSE stock market index, thus making it a binary classification problem. As mentioned in the previous section, it is pertinent to understand that the aim of this study is to determine whether combining particular sets of data will improve the predictive performance of a model, and not to find the state-of-the-art approach for maximising profits. Nonetheless, prediction accuracy does not directly equate to more profit. When predicting direction of stock markets, one could achieve a high accuracy, however one incorrect prediction could be a drop large enough to wipe out any profits made in previous predictions. Thus, these findings are not intended to be used directly in complete trading strategies, despite perhaps being a stepping stone to improving trading strategies in the future. 
 
-Since we have a binary classification problem, is does not make sense to use statistical performance measure such as RMSE, MAE and $R^2$ as they require continuous values. They would have been suitable to use if this study involved predicting a continuous value such as the closing price, or the percentage increase. The two performance measures that were performed in this study were \textbf{accuracy} and \textbf{F1 score}. 
+Since we have a binary classification problem, it does not make sense to use statistical performance measure such as RMSE, MAE and $R^2$ as they require continuous values. They would have been suitable to use if this study involved predicting a continuous value such as the closing price, or the percentage increase. The two performance measures that were used in this study were \textbf{accuracy} and \textbf{F1 score}. 
 
 \subsection{Accuracy and F1 Score}
+\label{subsec:accuracyandf1}
 
-Both the accuracy and F1 score require the following items to be counted:
+Both the accuracy and F1 score require counting the number of true positives, true negatives, false positives and false negatives. For this study, these terms have been defined as follows:
 
 \begin{enumerate}
     \item \textbf{True Positives (TP)}: This is when a result correctly predicts that the index will rise (the positive condition).
@@ -369,20 +377,20 @@ Figure \ref{fig:tptnfpfn} helps visualise what these terms mean.
 \label{fig:tptnfpfn}
 \end{figure}
 
-The accuracy can be calculated by the following formula: 
+The accuracy can be calculated with the following formula: 
 \begin{equation}
 \label{eq:accuracy}
 accuracy=\frac{TP + TN}{TP + TN + FP + FN}
 \end{equation}
 This is simply the summation of correctly predicted values divided by the total number of data items.
 
-Having accuracy as the sole performance metric is not good enough. As an example, imagine a model that identifies whether people at an airport are terrorists or not. This model can reach over $99$\% accuracy simply by labelling all passengers as not a terrorist, because typically there are only a handful of terrorists compared to the millions of passengers that travel in airports every year. The real performance metric in this case would be measuring how well it identifies terrorists, therefore true positives. Henceforth, this sort of metric is known as \textbf{recall} in statistics. Recall is the measure of the model's ability to find all relative cases (true positives) within a dataset. It can be measured by the following formula:
+When faced with a well balanced data set, the accuracy metric is an excellent and fair metric. There are some cases however where accuracy might not be suitable as the sole metric. As an example, imagine a model that identifies whether people at an airport are terrorists or not. This model can reach over $99$\% accuracy simply by labelling all passengers as not a terrorist, because typically there are only a handful of terrorists compared to the millions of passengers that travel in airports every year. The real performance metric in this case would be measuring how well it identifies terrorists, therefore true positives. This sort of metric is known as \textbf{recall} in statistics. Recall is the measure of the model's ability to find all relative cases (true positives) within a dataset. It can be measured by the following formula:
 
 \begin{equation}
 recall=\frac{TP}{TP + FN}
 \end{equation}
 
-Recall is also referred to as true positive rate, probability of detection and sensitivity.  
+Recall is also referred to as true positive rate, probability of detection or sensitivity.  
 
 Another important statistical metric is \textbf{precision}, which measures the ability of a model to identify only the relevant data points. If we relied on just recall, then labelling all the results as positive would result in a perfect recall score of 1. Such a model would however suffer from low precision. Precision is calculated as:
 
@@ -394,28 +402,41 @@ Precision is also referred to as the positive predictive value.
 
 Depending on the problem at hand, statisticians would prefer to maximise either recall or precision at the expense of the other. As an example, in cancer screening models, one would rather maximise recall, therefore identifying patients with cancer, while accepting lower precision. However in certain cases, such as stock market prediction, a good balance of precision and recall would be appreciated, because predicting incorrectly whether a stock will increase or decrease will both have the same severe consequences: profit loss.
 
-The ideal metric for this particular problem, stock market prediction, is the F1 score, which is a metric that combines both precision and recall. The F1 score can be calculated as:
+The F1 score can be calculated as:
 
 \begin{equation}
 \label{eq:f1}
 F_1=2 \times \frac{precision \times recall}{precision + recall}
 \end{equation}
 
-\subsection{Wilcoxon Signed Rank Test} 
-\label{sec:wilcoxon}
-In statistics, the Wilcoxon signed-rank test is a type of non-parametric test. The term \textit{non-parametric} signifies that no assumptions are made with regards to the underlying distribution of the data, such as mean and standard deviation. Essentially, non-parametric tests can be used when the population data does not have a normal distribution. The Wilcoxon signed rank test compares two samples to assess whether their population mean ranks differ. The null hypothesis is that the medians of two samples are equal. The underlining assumption however is that the paired differences are independent from each other.
+In chapter \ref{cha:resultsandevaluation}, the data set that was used happened to be a well balanced data set. Therefore, accuracy was given greater priority than F1 score. The F1 score was recorded nonetheless for experiments.  
 
-For this study, the test was used to determine whether two predictive models have the same accuracy (the null hypothesis), or not. Each of the hypotheses mentioned in Section \ref{sec:objectives} was compared to the base case mentioned in Section \ref{sec:thebasecase}. If the null hypothesis is accepted, then one can conclude that no improvement in predictive accuracy was achieved. 
+\subsection{Statistical Significance Test}
+\label{sec:statisticalsignificancetest}
+\subsubsection{Kruskal-Wallis Test}
+The Kruskal-Wallis test is a type of non-parametric test. The term \textit{non-parametric} signifies that no assumptions are made with regards to the underlying distribution of the data, such as mean and standard deviation. Essentially, non-parametric tests can be used when the population data does not have a normal distribution. The Kruskal-Wallis test compares two or more samples, regardless of whether they are equal in size or not. The null hypothesis assumes that all samples are from identical populations.  
+
+For this study, the test was used to determine whether all predictive models mentioned in Section \ref{sec:requirements} achieved the same accuracy (the null hypothesis), or not.  Otherwise, if it is rejected, then at least one sample originates from a different population from the others, therefore, contains a significant different in accuracy. The null hypothesis is rejected when the p-value given by the Kruskal-Wallis test is less than $0.05$.
 
 The data sample used for this test contained a value of either one or zero, where a value of one signifies that a model correctly predicted the direction of the FTSE index, while a zero signifies otherwise.
+ 
+
+\subsubsection{Wilcoxon Signed Rank Test} 
+\label{sec:wilcoxon}
+In the case that the Kruskal-Wallis test results in the null hypothesis being rejected, the next step would be to identify which method achieved a significant improvement in accuracy with respect to the other remaining method. This was achieved by performing the Wilcoxon signed rank test, which is another type of non-parametric test. Unlike the Kruskal-Wallis test, this test compares only two samples in order to assess whether their population mean ranks differ. The null hypothesis is that the medians of two samples are equal. The underlining assumption however is that the paired differences are independent from each other.
+
+For this study, the test was used to determine whether two predictive models do not significantly differ from each other in terms of accuracy (the null hypothesis), or not. Each method in this study was paired with another method for this test. If the null hypothesis is accepted, then one can conclude that no significant improvement in predictive accuracy was achieved. The null hypothesis is rejected when the p-value given by the Wilcoxon signed rank test is less than 0.05.
+
+The data sample used for this test contained a value of either one or zero, similar to the approach use for the Kruskal-Wallis test.
 
 \section{Discussion}
 \label{sec:discussion}
-This chapter began by comparing and contrasting past financial forecasting techniques, primarily on what data has been modelled, how it was preprocessed, and what architectures were used. It was also shown that stock market index prediction is sometimes combined with other external data, such as economical data, to help improve prediction performance. Other works also took into consideration the closing prices of other stock market indices. However, to our knowledge, there seems to be a gap in literature where both macroeconomic data and the closing prices of other markets are used to predict a stock market index. This study therefore seeks to use both sets of data in an effort to produce a better evaluation of the impact of such external actors on the direction of the FTSE stock market index.   
+This chapter began by comparing and contrasting past financial forecasting techniques, primarily on what data has been modelled, how it was preprocessed, and what architectures were used. It was also shown that stock market index prediction is sometimes combined with other external data, such as economical data, to help improve prediction performance. Other works also took into consideration the closing prices of other stock market indices. However, to our knowledge, there seems to be a gap in literature where both macroeconomic data and the closing prices of other markets are used to predict a stock market index. These two types data pose some interesting questions. Globalisation has helped global markets become interrelated, resulting in market contagion. To what extent can this phenomenon be used to predict the direction of a stock market? On the other hand, macro and micro economics are deeply interlinked. If the economy is doing well, would the general mood towards stock markets be better, thus resulting in an increase in stock prices? This study aims to answer such questions, and seeks to use both sets of data in an effort to produce a better evaluation of the impact of such external factors on the direction of the FTSE stock market index.   
+The next chapter will introduce both an ensemble approach and feed forward networks which will conform to the requirements in Section \ref{sec:requirements}. As previously mentioned, ensemble methods have been shown to improve prediction performance over individual classifiers in the ensemble \cite{opitz1999popular}. Both stages of the ensemble will use a feed forward artificial neural network. The ensemble approach will only be used for incorporating macroeconomic data, while simple feed forward networks will be used for the rest of the models.
 
-The next chapter will introduce both an ensemble approach and feed forward networks which will conform to the requirements in Section \ref{sec:requirements}. As previously mentioned, ensemble methods have been shown to improve prediction performance over individual classifiers in the ensemble \cite{opitz1999popular}. Both stages of the ensemble will use a feed forward artificial neural network. The ensemble approach will only be used for adding macroeconomic data, while simple feed forward networks will be used for the rest of the models. The ensemble approach was inspired by the works in Matthew Butler's PhD thesis \cite{butler2012computational} where he introduced LATIS (Learning Adaptive Technical Indicator System), a forecasting algorithm that blends micro and macro modelling perspectives when applying computational intelligence techniques. LATIS consists of a meta agent that uses reputation, effectiveness threshold and return as meta parameters for choosing an action to perform. The same idea, with different parameters was applied to this study, where instead a meta agent uses macro economic parameters to select which predictive model to use. The models to be selected are several feed forward networks trained over different periods that follow the same architecture as the base case or hypothesis \ref{h1}. This last bit is inspired by the bagging approach in ensemble learning \cite{breiman1996bagging}, where classifiers are trained on several sub sample of the training data. These sub samples are often chosen at random, however since this study deals with a time series, the order of data is crucial. An alternative option would be to take sub samples as shifted periods of data.
+The ensemble approach was inspired by the works in Matthew Butler's PhD thesis \cite{butler2012computational} where he introduced LATIS (Learning Adaptive Technical Indicator System), a forecasting algorithm that blends micro and macro modelling perspectives when applying computational intelligence techniques. LATIS consists of a meta agent that uses reputation, effectiveness threshold and return as meta parameters for choosing an action to perform. The same idea, with different parameters was applied to this study, where instead a meta agent uses macro economic parameters to select which predictive model to use. The models to be selected are several feed forward networks trained over different periods that follow the same architecture as the second base case or hypothesis \ref{h1}. This last piece is inspired by the bagging approach in ensemble learning \cite{breiman1996bagging}, where classifiers are trained on several sub sample of the training data. These sub samples are often chosen at random, however since this study deals with a time series, the order of data is crucial. An alternative option would be to take sub samples as shifted periods of data.
 
-Stock market data is volatile in nature and fluctuates on a daily basis. Training several models over smaller different time periods instead of a single model over one large period could be beneficial because with a smaller dataset, a model would be able to better capture fluctuation patterns in greater detail. Capturing the same level of detail with the same model over a large dataset would more likely lead to overfitting. 
+Stock market data is volatile in nature and fluctuates on a daily basis. Training several models over smaller different time periods instead of a single model over one large period could be beneficial because with a smaller dataset, a model would be able to better capture fluctuation patterns in greater detail. Capturing the same level of detail with the same model over a large dataset would more likely lead to overfitting. Matthew Butler also points out that \textit{"models constructed from historical information will wax and wane with the evolving market"}\cite{butler2012computational}. This suggests that predictive models lose their relevance over time, but may become good again in the future when a similar pattern in the data reappears. This can very well be applied to stock markets, especially when technical analysts assume that history tends to repeat itself in terms of price movements.
 
 The decision for using feed forward networks was due to their popularity as a choice of architecture for several financial forecasting applications. Nonetheless, the main aim of this study is not to determine the best architecture for financial forecasting, but to investigate whether different sets of data can help improve performance. From the literature review performed in this study, feed forward networks seemed to be a safe and easy choice. They do not necessarily require a complex architecture to achieve good performance, they can work well even with small amounts of data (therefore efficient), and they are well established architectures for financial forecasting.    
 
@@ -456,9 +477,9 @@ A common practice in neural networks is to initialise the network with random we
 
 As one can imagine, such an exercise takes a long time to run. For instance, iterating through $10$ different learning rates and $10$ different number of hidden nodes, while taking the average of $20$ individual runs for each parameter combination would mean that the model will be executed $2000$ times. Consequently, this framework for finding the optimal parameters was optimised to use multiple threads to increase computation performance.   
 
-\section{The Base Case}
+\section{The Base Cases}
 \label{sec:thebasecase}
-As per Requirement \ref{basecase}, a model for predicting the FTSE index with just the historical closing prices of FTSE was introduced.  To achieve this, a simple feed forward network with one hidden layer was implemented. A total of five inputs were used, which were mapped to the closing prices of the past five days of the FTSE index. The feed forward network was trained and tested on five years worth of FTSE closing prices, between the year 2013 and 2018. The same date range was used for the other hypotheses in order to perform a fair comparison in predictive performance.
+As per Requirement \ref{basecase}, the second base case required a model for predicting the FTSE index with just the historical closing prices of FTSE.  To achieve this, a simple feed forward network with one hidden layer was implemented. A total of five inputs were used, which were mapped to the closing prices of the past five days of the FTSE index. The feed forward network was trained and tested on five years worth of FTSE closing prices, between the year 2013 and 2018. The same date range was used for the other hypotheses in order to perform a fair comparison in predictive performance.
 
 Figure \ref{fig:basecase} depicts the chosen architecture for the base model. 
 
@@ -502,8 +523,8 @@ The exact same ensemble procedure in Section \ref{sec:methodh2} was used for thi
 
 \chapter{Results and Evaluation}
 \label{cha:resultsandevaluation}
-\section{The Base Case}
-All the methods mentioned in Chapter \ref{cha:implementation} were trained and tested with data from 2013 to 2018, so as to achieve a fair performance comparison over the same data set. With regards to FTSE data, this translates to $1256$ days of closing prices thus splitting the data $80/20$ will result in $1004$ daily closing prices for training, and $252$ for testing.
+\section{The Base Cases}
+All the methods mentioned in Chapter \ref{cha:implementation} were trained and tested with data from 2013 to 2018, so as to achieve a fair performance comparison over the same data set. With regards to FTSE data, this translates to $1256$ days of closing prices, therefore splitting the data $80/20$ will result in $1004$ daily closing prices for training and $252$ for testing.
 
 \begin{figure}[h]
 \includegraphics[width=10.5cm]{base_accuracy.png}
@@ -512,7 +533,9 @@ All the methods mentioned in Chapter \ref{cha:implementation} were trained and t
 \label{fig:base_plot_accuracy}
 \end{figure}
 
-With regards to the daily direction of the FTSE data, this period happens to be well balanced, where $53.18$\% of the daily FTSE closing prices rise, and $46.82$\% fall. With regards to just the testing data, the FTSE rises $51.98$\% of the time, and thus falls in the remaining $48.02$\%. While Hypotheses \ref{h1}, \ref{h2} and \ref{h3} were compared with the base case defined in Section \ref{sec:thebasecase}, the base case it self was compared with an alternative baseline where a model would predict all predictions as rising. Therefore, the predictive accuracy of the alternate baseline would be $51.98$\% with an F1 Score of $0.684$. Since this is a well balanced data set, accuracy score will take precedence, since the F1 score is weighted more toward correctly predicting that the stock index will rise.
+With regards to the daily direction of the FTSE data, this period happens to be well balanced, where $53.18$\% of the daily FTSE closing prices rise, and $46.82$\% fall. With regards to just the testing data, the FTSE rises $51.98$\% of the time, and thus falls in the remaining $48.02$\%.
+
+Section \ref{sec:requirements} mentions that two base cases were used. The first base case was to always predict the index as rising. Therefore, the predictive accuracy of the first base case is $51.98$\% with an F1 score of $0.684$. As mentioned in Section \ref{subsec:accuracyandf1}, since this is a well balanced data set, accuracy score will take precedence, since the F1 score is weighted more toward correctly predicting that the stock index will rise, hence the true positive.
 
 \begin{figure}[h]
 \includegraphics[width=10.5cm]{base_f1.png}
@@ -521,12 +544,14 @@ With regards to the daily direction of the FTSE data, this period happens to be 
 \label{fig:base_plot_f1}
 \end{figure}
 
-Figure \ref{fig:base_plot_accuracy} and \ref{fig:base_plot_f1} show the results from the optimal parameter test described in Section \ref{sec:optimalparams}. The optimal parameters for the base case were $9$ hidden nodes with a learning rate of $0.0016$. These parameters achieved an average of $55.36$\% accuracy and $0.65$ F1 Score.
+The second base case was consisted of implementing a simple model that predicts the direction of the FTSE index by taking as input the closing price of the index itself for the previous five days. Figure \ref{fig:base_plot_accuracy} and \ref{fig:base_plot_f1} show the results from the optimal parameter test described in Section \ref{sec:optimalparams} for the second base  case. The optimal parameters for this base case were $9$ hidden nodes with a learning rate of $0.0016$. These parameters achieved an average of $55.36$\% accuracy and $0.65$ F1 score.
 
-Table \ref{tab:test_results} shows that the Base case outperformed the baseline in terms of accuracy, but achieved less in terms of F1 Score. Performing the Wilcoxon signed rank test described in Section \ref{sec:wilcoxon} gives a p-value of 0.013, which is less than 0.05. This means that the null hypothesis can be rejected and hence statistically confirm that the base case and alternate baseline predictions are not similar. 
+Table \ref{tab:test_results} contains all the results of the experiments performed in this study. The results shows that the second base case increased accuracy with respect to the first case by $+3.37$\%, but achieved less in terms of F1 Score by $-0.0316$\. The reduction in F1 score is not necessarily a bad thing for the second base case. Since the first base case predicts everything as up, then it has a perfect recall value of 1, hence resulting in a higher F1 score. 
+
+The results of both base cases were then compared with the results of the other hypotheses.
 
 \section{Hypothesis 1: Incorporating Other Stock Market Indices}
-Using the same data set in the previous section, Figure \ref{fig:h1_plot_accuracy} and \ref{fig:h1_plot_f1} show the results from the optimal parameter test. The best performance was achieved with 17 hidden nodes and a learning rate of 0.0003. These parameters achieved an average of $66.51$\% accuracy and an F1 score of $0.72$.
+This hypothesis involved incorporating the closing price of other stock markets from around the world with the FTSE stock market index. Using the same data set in the previous section, Figure \ref{fig:h1_plot_accuracy} and \ref{fig:h1_plot_f1} show the results from the optimal parameter test. The best accuracy was achieved with $17$ hidden nodes and a learning rate of $0.0003$. These parameters achieved an average of $66.51$\% accuracy and an F1 score of $0.72$. Both figures produced a neat wave, where it can be shown that learning rate seems to influence the accuracy of the model more than the choice of number of hidden nodes when incorporating closing prices from other markets. 
 
 \begin{figure}[h]
 \includegraphics[width=10.5cm]{h1_accuracy.png}
@@ -542,14 +567,16 @@ Using the same data set in the previous section, Figure \ref{fig:h1_plot_accurac
 \label{fig:h1_plot_f1}
 \end{figure}
 
-Comparing with results in Table \ref{tab:test_results}, there is a a clear improvement over the base case, where accuracy increased by $20.14$\%, and F1 Score by $10.44$\%. 
+Taking a look at Table \ref{tab:test_results}, an increase in both accuracy and F1 score was achieved with respect to base case 1 and 2, where accuracy increased by $+14.52$\% and $+11.15$\% respectively, whereas the F1 score increased by $+0.0365$ and $+0.0681$ respectively.
 
 \section{Hypothesis 2: Incorporating Macroeconomical Parameters}
+This hypothesis involved incorporating macroeconomic parameters with the FTSE stock market index. Recall from Section \ref{sec:methodh2} that this model consists of a two staged process.
 
+The first stage involved training models over shifted 5 year periods of data from 2000 to 2013. These models only incorporated closing prices of the FTSE index. For each period, an exercise for finding the optimal parameters was performed. Table \ref{tab:h2_stage1} shows the optimal parameters chosen for each model, which was trained and tested over a particular period, along with the accuracy and F1 score that was achieved. 
 \begin{table}[h]
     \centering
     \begin{tabular}{|c|c|c|c|c|} \hline
-        \textbf{Data Period} & \textbf{Learning Rate} & \textbf{Nodes} & \textbf{F1 Score} & \textbf{Accuracy} \\ \hline
+        \textbf{Model Period} & \textbf{Learning Rate} & \textbf{Nodes} & \textbf{F1 Score} & \textbf{Accuracy} \\ \hline
         Jan 2000 - 2005 & 0.0013 & 16 & 0.489 & 0.516 \\
         Jul 2000 - 2005 & 0.0005 & 14 & 0.548 & 0.532 \\
         Jan 2001 - 2006 & 0.0011 & 18 & 0.634 & 0.552 \\
@@ -586,10 +613,12 @@ Comparing with results in Table \ref{tab:test_results}, there is a a clear impro
 \label{fig:h2_plot_f1}
 \end{figure}
 
-
-
+The second stage involved incorporating the predictions form these models with lagged macroeconomical data. Figure \ref{fig:h2_plot_accuracy} and \ref{fig:h2_plot_f1} show the results from the optimal parameter test for the second stage. The best accuracy was achieved with learning rate $0.0011$ and $47$ hidden nodes. 
+As shown in Table \ref{tab:test_results}, disappointing results were achieved. This hypothesis did not perform better than the second base case in terms of both accuracy and F1 score, and only achieved a small increase in accuracy over the first base case. With respect to accuracy, this hypothesis achieved $+1.47$\% and $-0.0191$\% compared to base case 1 and 2, and  $-0.0425$ and $-0.0109$ for the F1 score.   
 
 \section{Hypothesis 3: Incorporating Macroeconomical Parameters and Other Stock Market Indices}
+This hypothesis followed a similar approach to that in the previous hypothesis, with the exception that each model trained in the first stage also incorporated closing prices from other stock markets. Table \ref{tab:h3_stage1} shows the optimal parameters chosen for each period in the first stage of the process, along with the achieved accuracy and F1 score. 
+
 
 \begin{table}[h]
     \centering
@@ -617,23 +646,67 @@ Comparing with results in Table \ref{tab:test_results}, there is a a clear impro
     \label{tab:h3_stage1}
 \end{table}
 
+Regarding the second stage, Figure \ref{fig:h3_plot_accuracy} and \ref{fig:h3_plot_f1} show the results from the optimal parameter test. The best accuracy was achieved with a learning rate of $0.00001$ and $56$ hidden nodes. Similar to hypothesis 1, this hypothesis achieved a higher accuracy and F1 score compared to both base cases. Accuracy increased by $+1.15$\% and $+8.12$\% compared to the first and second base case, while the F1 score increased by $+0.0237$ and $+0.0553$ respectively.
 
+\begin{figure}[h]
+\includegraphics[width=10.5cm]{h3_accuracy.png}
+\centering
+\caption{A 3D plot of the accuracy results for the hypothesis \ref{h3} optimal parameter test.} 
+\label{fig:h3_plot_accuracy}
+\end{figure}
 
+\begin{figure}[h]
+\includegraphics[width=10.5cm]{h3_f1.png}
+\centering
+\caption{A 3D plot of the F1 score results for the hypothesis \ref{h3} optimal parameter test.} 
+\label{fig:h3_plot_f1}
+\end{figure}
 
 \begin{table}[h]
     \centering
     \begin{tabular}{|c|c|c|c|c|} \hline
         \textbf{Method} & \textbf{Learning Rate} & \textbf{Nodes} & \textbf{Accuracy} & \textbf{F1 Score} \\ \hline
-        \textbf{Alternate Baseline} & - & - & 0.51984 & 0.68404 \\
-        \textbf{Base Case} & 0.0016 & 09 & 0.55357 & 0.65241 \\
+        \textbf{Base Case 1} & - & - & 0.51984 & 0.68404 \\
+        \textbf{Base Case 2} & 0.0016 & 09 & 0.55357 & 0.65241 \\
         \textbf{Hypothesis \ref{h1}} & 0.0003 & 17 & 0.66508 & 0.72052 \\
         \textbf{Hypothesis \ref{h2}} & 0.0011 & 47 & 0.53452 & 0.64150 \\
+        \textbf{Hypothesis \ref{h3}} & 0.00001 & 56 & 0.63472 & 0.70772  \\
         \hline
     \end{tabular}
-    \caption{Table of optimal parameters and top average performance metrics for each method.}
+    \caption{Table of optimal parameters and maximising the average performance metrics for each method.}
     \label{tab:test_results}
 \end{table}
 
+
+
+\section{Statistical Significance Tests}
+Section \ref{sec:statisticalsignificancetest} explained how the Kruskal-Wallis and Wicoxon signed rank tests can be used to determine whether any significant increase in accuracy is achieved between different methods. 
+
+The first step was to perform the Kruskal-Wallis test on all the prediction outputs of each method simultaneously, which are the two base cases and hypothesis \ref{h1}, \ref{h2} and \ref{h3}. The p-value given by this test was of \textbf{$0.0006316$}. Since this is less than $0.05$, the null-hypothesis is rejected, therefore at least one sample does not originate from the same population, ergo has a significant difference in accuracy.
+
+The next step was to perform the Wilcoxon signed rank test on all pairs of results. Table \ref{tab:wilcoxon_results} consists of a matrix of the resulting p-values from the test for each given pair. The values that are in bold are greater than 0.005, thus the null hypothesis had been accepted for that given pair. This means that no significant improvement in accuracy was achieved from:
+\begin{enumerate}
+    \item The second base case with respect to the first base case.
+    \item The second hypothesis with respect to the second base case.
+    \item The third hypothesis with respect to the first hypothesis.
+\end{enumerate}
+
+The null hypothesis for each hypothesis in Section \ref{sec:objectives} was defined as the method in question not achieving a significant difference in accuracy when compared to an underlying base case. This means that the null hypothesis for hypothesis \ref{h2} can be accepted, while the null hypothesis for both hypothesis \ref{h1} and \ref{h3} can be rejected.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|} \hline
+         &  \textbf{BC 1} & \textbf{BC 2} & \textbf{H1} & \textbf{H2} & \textbf{H3} \\ \hline
+        \textbf{BC1} & - & \textbf{0.07044} & 0.00000459 &  0.01431 & 0.0000712\\
+        \textbf{BC2} & \textbf{0.07044} & - & 0.00176 & \textbf{1.0} & 0.02771 \\
+        \textbf{H1} & 0.00000459 & 0.00176 & - & 0.001216 & \textbf{0.15985} \\
+        \textbf{H2} & 0.01431 & \textbf{1.0} & 0.001216 & - & 0.01532\\
+        \textbf{H3} & 0.0000712 & 0.02771 & \textbf{0.15985} & 0.01532 & -  \\
+        \hline
+    \end{tabular}
+    \caption{Matrix of p-values for performing the Wilcoxon signed rank test on pairs of results. P-values that are in bold means that the hypothesis has been accepted, therefore the paired samples come from the same distribution. }
+    \label{tab:wilcoxon_results}
+\end{table}
 
 
 \chapter{Conclusion and Future Work}
