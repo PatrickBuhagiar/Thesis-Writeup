@@ -12,7 +12,7 @@
 \date{2018-September-11}
 \supervisor{Dimitar Kazakov}
 \MIP
-\wordcount{9500}
+\wordcount{11408}
 
 \includes{Appendices \ref{cha:usefulpackages}, \ref{cha:gotchas} and
   \ref{cha:deptfac}}
@@ -24,9 +24,7 @@
      
 }
 
-\dedication{To all students everywhere}
-
-\acknowledgements{A special thanks goes to my supervisor, Dimitar Kazakov, for his guidance throughout this study. This work would not have been possible without the continuous support of my friends and family, who have always been there for me through thick and thin.}
+\acknowledgements{A special thanks goes to my supervisor, Dimitar Kazakov, for his guidance throughout this study. This work would not have been possible without the continuous support of my family and friends, who have always been there for me through thick and thin.}
 \bibliography{refs}
 \begin{document}
 
@@ -487,7 +485,7 @@ Figure \ref{fig:basecase} depicts the chosen architecture for the base model.
 \begin{figure}[h]
 \includegraphics[width=10cm]{Base_case_diagram.png}
 \centering
-\caption{The feed forward architecture for the base model.} 
+\caption{The feed forward architecture for the second base model.} 
 \label{fig:basecase}
 \end{figure}
 
@@ -499,7 +497,7 @@ The architecture for this hypothesis is very similar to that used in the previou
 
 A closer look at the historical closing index prices of different stock markets shows that not all stock markets open on the same days. This is mainly due to stock markets not operating on country specific bank holidays. To overcome this issue, whenever an index does not have a closing price for a particular date, the last known closing price would be used instead.  
 
-\section{Hypothesis 2: Incorporating macroeconomic Parameters}
+\section{Hypothesis 2: Incorporating Macroeconomic Parameters}
 \label{sec:methodh2}
 As per Requirement \ref{h2}, this hypothesis requires incorporating macroeconomic data with the historical closing prices of the FTSE. Section \ref{sec:discussion} mentioned the motivation for approaching this problem with an ensemble approach. 
 
@@ -517,7 +515,7 @@ Figure \ref{fig:metamodelflow} shows a high level data flow of the two-staged en
 \end{figure}
 
 
-\section{Hypothesis 3: Incorporating macroeconomic Parameters and Other Stock Market Indices}
+\section{Hypothesis 3: Incorporating Macroeconomic Parameters and Other Stock Market Indices}
 \label{sec:methodh3}
 The exact same ensemble procedure in Section \ref{sec:methodh2} was used for this hypothesis, with the exception that each individually trained model in the first stage followed the same architecture in Section \ref{sec:methodh1} rather than the base case in Section \ref{sec:thebasecase}. 
 
@@ -530,7 +528,7 @@ All the methods mentioned in Chapter \ref{cha:implementation} were trained and t
 \begin{figure}[h]
 \includegraphics[width=10.5cm]{base_accuracy.png}
 \centering
-\caption{A 3D plot of the accuracy results for the base case optimal parameter test.} 
+\caption{A 3D plot of the accuracy results for the second base case optimal parameter test.} 
 \label{fig:base_plot_accuracy}
 \end{figure}
 
@@ -541,7 +539,7 @@ Section \ref{sec:requirements} mentions that two base cases were used. The first
 \begin{figure}[h]
 \includegraphics[width=10.5cm]{base_f1.png}
 \centering
-\caption{A 3D plot of the F1 score results for the base case optimal parameter test.} 
+\caption{A 3D plot of the F1 score results for the second base case optimal parameter test.} 
 \label{fig:base_plot_f1}
 \end{figure}
 
@@ -570,7 +568,7 @@ This hypothesis involved incorporating the closing price of other stock markets 
 
 Taking a look at Table \ref{tab:test_results}, an increase in both accuracy and F1 score was achieved with respect to base case 1 and 2, where accuracy increased by $+14.52$\% and $+11.15$\% respectively, whereas the F1 score increased by $+0.0365$ and $+0.0681$ respectively.
 
-\section{Hypothesis 2: Incorporating macroeconomic Parameters}
+\section{Hypothesis 2: Incorporating Macroeconomic Parameters}
 This hypothesis involved incorporating macroeconomic parameters with the FTSE stock market index. Recall from Section \ref{sec:methodh2} that this model consists of a two staged process.
 
 The first stage involved training models over shifted 5 year periods of data from 2000 to 2013. These models only incorporated closing prices of the FTSE index. For each period, an exercise for finding the optimal parameters was performed. Table \ref{tab:h2_stage1} shows the optimal parameters chosen for each model, which was trained and tested over a particular period, along with the accuracy and F1 score that was achieved. 
@@ -617,7 +615,7 @@ The first stage involved training models over shifted 5 year periods of data fro
 The second stage involved incorporating the predictions form these models with lagged macroeconomic data. Figure \ref{fig:h2_plot_accuracy} and \ref{fig:h2_plot_f1} show the results from the optimal parameter test for the second stage. The best accuracy was achieved with learning rate $0.0011$ and $47$ hidden nodes. 
 As shown in Table \ref{tab:test_results}, disappointing results were achieved. This hypothesis did not perform better than the second base case in terms of both accuracy and F1 score, and only achieved a small increase in accuracy over the first base case. With respect to accuracy, this hypothesis achieved $+1.47$\% and $-0.0191$\% compared to base case 1 and 2, and  $-0.0425$ and $-0.0109$ for the F1 score.   
 
-\section{Hypothesis 3: Incorporating macroeconomic Parameters and Other Stock Market Indices}
+\section{Hypothesis 3: Incorporating Macroeconomic Parameters and Other Stock Market Indices}
 This hypothesis followed a similar approach to that in the previous hypothesis, with the exception that each model trained in the first stage also incorporated closing prices from other stock markets. Table \ref{tab:h3_stage1} shows the optimal parameters chosen for each period in the first stage of the process, along with the achieved accuracy and F1 score. 
 
 
